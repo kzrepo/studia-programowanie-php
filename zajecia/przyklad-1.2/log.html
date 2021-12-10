@@ -1,0 +1,71 @@
+<!-- Pola formularza umieszczone w tabeli -->
+<!-- Style na poziomie dokumentu i na poziomie elementu -->
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Logowanie</title>
+    
+    <style>
+        body {
+            color: #ffffff;
+            background-color: teal;
+        }
+        
+        input[type="text"] {
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<br>
+<center>
+    
+    <form action='log2.php' method=GET>
+        <table border=0>
+            <tr>
+                <td>Imię</td>
+                <td colspan=2>
+                    <input name='imie' type=text size=15>
+                </td>
+            </tr>
+            <tr>
+                <td>Nazwisko</td>
+                <td colspan=2>
+                    <input name='nazwisko' type=text size=15'>
+                </td>
+            </tr>
+            <tr>
+                <td>Płeć:</td>
+                <td>Kobieta</td>
+                <td>
+                    <INPUT NAME="plec" TYPE="radio" value="t">
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Mężczyzna</td>
+                <td>
+                    <INPUT NAME="plec" TYPE="radio" value="f">
+                </td>
+            </tr>
+            <tr>
+                <td>Hasło</td>
+                <td colspan=2>
+                    <input name='haslo' type=password size=15 style='text-align: left'>
+                </td>
+            </tr>
+            <tr>
+                <td colspan=3>
+                    <input type=submit style='width:100%' value='Zaloguj się'>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+</center>
+
+</body>
+</html>
