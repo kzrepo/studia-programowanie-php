@@ -40,7 +40,7 @@
 
 <br>
 
-<form method=GET action=''>
+<form method=get action=''>
     <table width=70% border=1>
         <tr>
             <td width=20%>Cena brutto

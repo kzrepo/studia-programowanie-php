@@ -16,7 +16,7 @@
             "kr" => "krzesło", "tap" => "tapczan"];
 ?>
 
-<form method='GET'>
+<form method='get'>
     <table>
         <tr>
             <td><select name='wybrany'>

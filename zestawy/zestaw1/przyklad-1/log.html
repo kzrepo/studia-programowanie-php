@@ -1,0 +1,33 @@
+<!--
+W pliku log.html umieszczono kod HTML strony zawierającej prosty formularz 
+służący do logowania (użytkownik podaje swoje imię, nazwisko, wybiera płeć 
+oraz wpisuje hasło)
+-->
+
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Logowanie</title>
+</head>
+<body style="background-color: teal; color: black"><br>
+<div style="text-align: center;">
+    <form action="log2.php" method=get>
+        <label for="imie">Imię</label>
+        <input name="imie" type=text id="imie" size=15 style="text-align: left">
+        <br>
+        <label for="nazwisko">Nazwisko</label>
+        <input name="nazwisko" type=text id="nazwisko" size=15 style="text-align: left">
+        <br> Płeć:
+        <input name="plec" type="radio" id="kobieta" value="t">
+        <label for="kobieta">Kobieta</label>
+        <input name="plec" type="radio" id="mezczyzna" value="f">
+        <label for="mezczyzna">Mężczyzna</label>
+        <br>
+        <label for="haslo"> Hasło</label>
+        <input name="haslo" type=password id="haslo" size=15 style="text-align: left">
+        <br>
+        <input type=submit value="Zaloguj się">
+    </form>
+</div>
+</body>
+</html>

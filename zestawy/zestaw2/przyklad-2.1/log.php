@@ -55,7 +55,7 @@
         {
 // formularz generuje tylko gdy dane jeszcze nie były wysyłane 
             ?>
-            <form method=POST action=''>
+            <form method=post action=''>
                 <table border=0 style="margin: 0 auto;">
                     <tr>
                         <td>Imię</td>
@@ -68,9 +68,9 @@
                     <input type=text name='nazwisko' size=15 style='text-align: left'></td>
                     </tr>
                     <tr><td>Płeć:</td><td>Kobieta</td>
-                    <td><INPUT TYPE="radio" NAME="plec" value="t"></td>
+                    <td><input type="radio" name="plec" value="t"></td>
                     </tr><tr><td></td>
-                    <td>Mężczyzna</td><td><INPUT TYPE="radio" NAME="plec" value="f"> </td>
+                    <td>Mężczyzna</td><td><input type="radio" name="plec" value="f"> </td>
                     </tr>
                     -->
                     <tr>
