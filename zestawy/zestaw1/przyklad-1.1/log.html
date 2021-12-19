@@ -1,33 +1,36 @@
-<html>
+<!--
+Utwórz plik log2.php, do którego "przechodzimy" po wciśnięciu przycisku
+"Zaloguj się". Skrypt sprawdza czy zostało podane odpowiednie hasło
+(załóżmy że hasło brzmi ‘test’). Jeśli tak, wita użytkownika, jeśli nie
+wypisuje informacje o braku dostępu ("Logowanie nieudane").
+Powitanie powinno rozpocząć się od „Witam Panią ... w systemie” lub
+„Witam Pana ... w systemie” w zależności od płci.
+ -->
+
+<html lang="pl">
 <head>
     <meta charset="utf-8">
     <title>Logowanie</title>
 </head>
-
-<body bgcolor=teal text="#FFFFFF">
-
-<br>
-<center>
-    
-    <form action='log2.php' method=get>
-        Imię
-        <input name='imie' type=text size=15 style='text-align: left'>
+<body style="background-color: teal; color: white"><br>
+<div style="text-align: center;">
+    <form action="log2.php" method=get>
+        <label for="imie">Imię</label>
+        <input name="imie" type=text id="imie" size=15 style="text-align: left">
         <br>
-        Nazwisko
-        <input name='nazwisko' type=text size=15 style='text-align: left'>
+        <label for="nazwisko">Nazwisko</label>
+        <input name="nazwisko" type=text id="nazwisko" size=15 style="text-align: left">
+        <br> Płeć:
+        <input name="plec" type="radio" id="kobieta" value="t">
+        <label for="kobieta">Kobieta</label>
+        <input name="plec" type="radio" id="mezczyzna" value="f">
+        <label for="mezczyzna">Mężczyzna</label>
         <br>
-        Płeć: Kobieta
-        <input name="plec" type="radio" value="t">
-        Mężczyzna
-        <input name="plec" type="radio" value="f">
+        <label for="haslo"> Hasło</label>
+        <input name="haslo" type=password id="haslo" size=15 style="text-align: left">
         <br>
-        Hasło
-        <input name='haslo' type=password size=15 style='text-align: left'>
-        <br>
-        <input type=submit value='Zaloguj się'>
+        <input type=submit value="Zaloguj się">
     </form>
-
-</center>
-
+</div>
 </body>
 </html>

@@ -1,5 +1,8 @@
-<!-- Dane przesyłane metodą post nie są dołączane do adresu URL -->
-<html>
+<!--
+Zmień metodę przesyłania danych na POST. Zaobserwuj różnicę.
+-->
+
+<html lang="pl">
 <head>
     <meta charset="utf-8">
     <title>Logowanie</title>
@@ -8,11 +11,11 @@
         body {
             background-color: teal;
             color: #FFFFFF;
-        }
-
-        input[type="text"] {
             text-align: center;
         }
+        input[type="text"] { text-align: center }
+        table { display: inline-table }
+        td { padding: 5px }
     </style>
 
 </head>
@@ -20,54 +23,68 @@
 <body>
 <?php
     $formularz = '
-		<form method=post action=""> 
-		<table border=0>
-		<tr>
-		<td>Imię</td><td colspan=2><input type=text name="imie" size=15></td>
-		</tr>
-		<tr>
-		<td>Nazwisko</td><td colspan=2><input type=text name="nazwisko" size=15></td>
-		</tr>
-		<tr>
-		<td>Płeć:</td><td>Kobieta</td><td><input type="radio" name="plec" value="t"></td>
-		</tr>
-		<tr> 
-		<td></td><td>Mężczyzna</td><td><input type="radio" name="plec" value="f"> </td>
-		</tr>
-		<tr>
-		<td>Hasło</td><td colspan=2><input type=password name="haslo" size=15 style="text-align: left"></td>
-		</tr>
-		<tr>
-		<td colspan=3><input type=submit value="Zaloguj się" style="width:100%"></td>
-		</tr>
-		</table>
-		</form>';
+    <form action="" method=post>
+        <table style="display: inline-table">
+            <tr>
+                <td>
+                    <label for="imie">Imię</label>
+                </td>
+                <td>
+                    <input name="imie" type=text id="imie" size=15 style="text-align: left">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="nazwisko">Nazwisko</label>
+                </td>
+                <td>
+                    <input name="nazwisko" type=text id="nazwisko" size=15 style="text-align: left">
+                </td>
+            </tr>
+            <tr>
+                <td rowspan="2">Płeć:</td>
+                <td>
+                    <input name="plec" type="radio" id="kobieta" value="t">
+                    <label for="kobieta">Kobieta</label>
+                </td></tr>
+            <tr>
+                <td>
+                    <input name="plec" type="radio" id="mezczyzna" value="f">
+                    <label for="mezczyzna">Mężczyzna</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="haslo"> Hasło</label>
+                </td>
+                <td>
+                    <input name="haslo" type=password id="haslo" size=15 style="text-align: left">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type=submit style="width: 100%" value="Zaloguj się">
+                </td>
+            </tr>
+        </table>
+    </form>';
 ?>
+<?php
+    $haslo = $_POST['haslo'] ?? null;
+    $imie = $_POST['imie'] ?? null;
+    $nazwisko = $_POST['nazwisko'] ?? null;
+    $plec = $_POST['plec'] ?? null;
 
-<br>
-<center>
-
-    <?php
-
-        $haslo = $_POST['haslo'] ?? null;
-        $imie = $_POST['imie'] ?? null;
-        $nazwisko = $_POST['nazwisko'] ?? null;
-        $plec = $_POST['plec'] ?? null;
-
-        if ($haslo == null && $imie == null && $nazwisko == null && $plec == null)
-            echo $formularz;
-        else
-        {
-            if ($haslo == null || $imie == null || $nazwisko == null || $plec == null)
-                echo 'Wróć do formularza logowania i podaj wszystkie dane';
-            else if ($haslo === 'test')
-                echo $imie . ' ' . $nazwisko . ', witamy ' . ($plec === 't' ? 'Panią' : 'Pana') . ' w systemie ';
-            else echo 'Logowanie nieudane';
-        }
-
-    ?>
-
-</center>
-
+    if ($haslo == null && $imie == null && $nazwisko == null && $plec == null)
+        echo $formularz;
+    else
+    {
+        if ($haslo == null || $imie == null || $nazwisko == null || $plec == null)
+            echo 'Wróć do formularza logowania i podaj wszystkie dane';
+        else if ($haslo === 'test')
+            echo "$imie $nazwisko, witamy " . ($plec === 't' ? 'Panią' : 'Pana') . " w systemie";
+        else echo 'Logowanie nieudane';
+    }
+?>
 </body>
 </html>

@@ -1,71 +1,63 @@
-<!-- Pola formularza umieszczone w tabeli -->
-<!-- Style na poziomie dokumentu i na poziomie elementu -->
-<html>
+<!--
+Spróbuj poprawić wygląd formularza umieszczając jego elementy w tabeli
+HTML. Skoryguj style „inline” dla pól tekstowych ustawiając
+wyśrodkowanie tekstu. Zmień metodę „stylowania” używając stylu
+zdefiniowanego na poziomie dokumentu (strony).
+-->
+
+<html lang="pl">
 <head>
     <meta charset="utf-8">
     <title>Logowanie</title>
-    
     <style>
-        body {
-            color: #ffffff;
-            background-color: teal;
-        }
-        
-        input[type="text"] {
-            text-align: center;
-        }
+        td {padding: 5px}
     </style>
-
 </head>
-
-<body>
-
-<br>
-<center>
-    
-    <form action='log2.php' method=get>
-        <table border=0>
+<body style="background-color: teal; color: white; text-align: center"><br>
+    <form action="log2.php" method=get>
+        <table style="display: inline-table">
             <tr>
-                <td>Imię</td>
-                <td colspan=2>
-                    <input name='imie' type=text size=15>
-                </td>
-            </tr>
-            <tr>
-                <td>Nazwisko</td>
-                <td colspan=2>
-                    <input name='nazwisko' type=text size=15'>
-                </td>
-            </tr>
-            <tr>
-                <td>Płeć:</td>
-                <td>Kobieta</td>
                 <td>
-                    <input name="plec" type="radio" value="t">
+                    <label for="imie">Imię</label>
                 </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td>Mężczyzna</td>
                 <td>
-                    <input name="plec" type="radio" value="f">
+                    <input name="imie" type=text id="imie" size=15 style="text-align: left">
                 </td>
             </tr>
             <tr>
-                <td>Hasło</td>
-                <td colspan=2>
-                    <input name='haslo' type=password size=15 style='text-align: left'>
+                <td>
+                    <label for="nazwisko">Nazwisko</label>
+                </td>
+                <td>
+                    <input name="nazwisko" type=text id="nazwisko" size=15 style="text-align: left">
                 </td>
             </tr>
             <tr>
-                <td colspan=3>
-                    <input type=submit style='width:100%' value='Zaloguj się'>
+                <td rowspan="2">Płeć:</td>
+                <td>
+                    <input name="plec" type="radio" id="kobieta" value="t">
+                    <label for="kobieta">Kobieta</label>
+                </td></tr>
+            <tr>
+                <td>
+                    <input name="plec" type="radio" id="mezczyzna" value="f">
+                    <label for="mezczyzna">Mężczyzna</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label for="haslo"> Hasło</label>
+                </td>
+                <td>
+                    <input name="haslo" type=password id="haslo" size=15 style="text-align: left">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type=submit style="width: 100%" value="Zaloguj się">
                 </td>
             </tr>
         </table>
     </form>
-
-</center>
-
 </body>
 </html>
