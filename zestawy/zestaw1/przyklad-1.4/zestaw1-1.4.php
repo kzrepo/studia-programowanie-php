@@ -9,9 +9,9 @@ Zmień metodę przesyłania danych na POST. Zaobserwuj różnicę.
 
     <style>
         body {
+            text-align: center;
             background-color: teal;
             color: #FFFFFF;
-            text-align: center;
         }
         input[type="text"] { text-align: center }
         table { display: inline-table }
@@ -79,10 +79,11 @@ Zmień metodę przesyłania danych na POST. Zaobserwuj różnicę.
         echo $formularz;
     else
     {
+        $plec = $plec === 't' ? 'Panią' : 'Pana';
         if ($haslo == null || $imie == null || $nazwisko == null || $plec == null)
             echo 'Wróć do formularza logowania i podaj wszystkie dane';
         else if ($haslo === 'test')
-            echo "$imie $nazwisko, witamy " . ($plec === 't' ? 'Panią' : 'Pana') . " w systemie";
+            echo "$imie $nazwisko, witamy $plec w systemie";
         else echo 'Logowanie nieudane';
     }
 ?>
