@@ -1,14 +1,7 @@
 <!--
-Bazując na wybranych fragmentach przykładowego kodu (wybierz jedną z
-metod tworzenia i nawigacji po tablicy) zbuduj skrypt zawierający
-formularz złożony z listy wyboru (<select>).
-Nazwy opcji listy powinny być nazwami towarów, natomiast wartości opcji
-(atrybuty "value" znaczników <option>) powinny być kluczami
-odpowiednich elementów tablicy.
-Poza listą wyboru formularz powinien zawierać przycisk "Pokaż
-informacje". Po jego wciśnięciu na stronie powinna pojawić się nazwa
-wybranego towaru. Uwaga: powinna ona pozostać również jako
-wyświetlona w liście.
+Poza informacją o nazwie towaru chcę pamiętać także jego cenę. Przekształć
+tablicę towarów tak, aby nazwy towarów były kluczami a wartościami ich ceny.
+Kod zmień tak, aby działał dla nowo określonej tablicy.
 -->
 
 <html lang="pl">
@@ -22,7 +15,10 @@ wyświetlona w liście.
 <body>
 
 <?php
-    $towary = ["sza" => "szafa", "st" => "stół", "kr" => "krzesło", "tap" => "tapczan"];
+    $towary = ["sza" => ["szafa", 200],
+        "st" => ["stół", 500],
+        "kr" => ["krzesło", 250],
+        "tap" => ["tapczan", 1500]];
 ?>
 
 <form method='get' action="">
@@ -37,9 +33,12 @@ wyświetlona w liście.
                         if ($wybrany == 'noSelection')
                             echo "<option value='noSelection'>Wybierz z listy ...</option>";
                         foreach ($towary as $key => $nazwaTowaru)
+                        {
                             // atrybut selected jest dodawany dla opcji obecnie wybranej (w zmiennej $wybrany)
                             // żeby pozostawała ona w liście jako wybrana (inaczej po przeładowaniu strony w liście zawsze będzie pierwsza opcja)
-                            echo "<option value='$key'" . ($key == $wybrany ? ' selected' : '') . ">$nazwaTowaru</option>";
+                            $is_selected = $key == $wybrany ? ' selected' : '';
+                            echo "<option value='$key' $is_selected>$nazwaTowaru[0]</option>";
+                        }
                     ?>
                 </select>
             </td>
@@ -50,11 +49,16 @@ wyświetlona w liście.
         <tr>
             <td colspan=2 style="font-size: 30px; text-align: center; padding-top: 20px">
                 <?php
-                    if ($wybrany != 'noSelection') echo "$towary[$wybrany]";
+                    if ($wybrany != 'noSelection')
+                    {
+                        $nazwa = $towary[$wybrany][0];
+                        $price = number_format($towary[$wybrany][1], 2);
+                        echo "$nazwa w cenie $price zł";
+                    }
                 ?>
             </td>
         </tr>
     </table>
 </form>
 </body>
-</html> 
+</html>

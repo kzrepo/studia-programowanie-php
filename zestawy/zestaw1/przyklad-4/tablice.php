@@ -90,7 +90,7 @@ nawigacyjne po tablicach.
     while ($wartosc = current($towary))
     {
         $klucz = key($towary);
-        echo "klucz: " . $klucz . ", wartość: " . $wartosc . "<br>";
+        echo "klucz: $klucz, wartość: $wartosc<br>";
         next($towary);
     }
     reset($towary);
