@@ -1,2 +1,2 @@
 Krzysztof
-Linia 1<br>Linia 2<br>Linia 3
+Linijka pierwsza<br>Linijka druga<br>Linijka trzecia

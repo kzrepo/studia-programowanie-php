@@ -1,0 +1,2 @@
+"Krzysztof";"To jest tekst<br>A to jest drugi tekst"
+"Zofia";"Piszę sobie<br>Więcej i<br>Jeszcze więcej<br>A to ostatnia linijka"
