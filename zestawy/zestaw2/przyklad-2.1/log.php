@@ -1,92 +1,99 @@
-<html>
+<!--
+Tym razem załóżmy, że dane o użytkownikach są przechowywane w pliku
+dostep.txt, w formacie imię;nazwisko;hasło;płeć;
+Uruchom w przeglądarce i wykonaj ćwiczenia.
+
+Zmodyfikowany skrypt powinien sprawdzać zgodność podanego w formularzu
+imienia i hasła z tym zapisanym w pliku i wyświetlać powitanie lub informację o
+odrzuceniu.
+Mogą się przydać: explode(), fgetcsv()
+-->
+
+<?php
+    //echo "<pre>";
+    //$imie = $_POST['imie'] ?? null;
+    //var_dump(empty($imie));
+    //var_dump(isset($imie));
+    //echo "</pre>";
+    $imie_przeslane = $_POST['imie'] ?? null;
+    $haslo_przeslane = $_POST['haslo'] ?? null;
+    $filename = 'dostep.txt';
+?>
+<html lang="pl">
 <head>
     <meta charset="utf-8">
     <title>Logowanie</title>
+    <style>
+        body {background-color: teal; color: white; text-align: center}
+        table {display: inline-table}
+    </style>
 </head>
-<body bgcolor=teal text="#FFFFFF">
+<body>
 <br>
-<div>
-    <?php
-        /* $uzytkownicy = [];
-        $plik = fopen("dostep.txt","r")
-        or exit("Problem z otwarciem pliku.");
+<?php
+    // wpuszcza mnie nawet przy pustym imieniu, ale nie przy pierwszym uruchomieniu
+    if (isset($imie_przeslane))
+    {
+        $plik = fopen($filename, 'r')
+        or exit("Problem z otwarciem pliku $filename");
+        $znaleziony = false;
         while (1)
         {
-        //Czytam linie
-            $dane_uzytkownika = fgets($plik);
-            if(feof($plik)) break;
-        //Dodaje uzytkownika do tablicy uzytkownikow
-            $uzytkownik = explode(';',$dane_uzytkownika);
-            array_push($uzytkownicy, $uzytkownik);
-
-            print("$uzytkownik");
-            print("$uzytkownicy");
-        }
-        fclose($plik); */
-    ?>
-
-    <?php
-        if (isset()
-
-        while (1)
-        {
-            $linia = fgets($plik);
-            $dostep = explode(";", $linia);
-            $imie = $dostep[0];
-            $nazwisko = $dostep[1];
-            $haslo = $dostep[2];
-            $gender = $dostep[3];
-            if ($_POST['imie'] == $login)
+            $dane_uzytkownika = fgetcsv($plik, 1000, ";");
+            $imie_zapisane = $dane_uzytkownika[0];
+            $nazwisko_zapisane = $dane_uzytkownika[1];
+            $haslo_zapisane = $dane_uzytkownika[2];
+            $plec_zapisana = $dane_uzytkownika[3];
+            if ($imie_przeslane === $imie_zapisane)
             {
-                $snaleziony = true;
+                $znaleziony = true;
+                break;
             }
-            if (fepf($plik)) break;
+            if (feof($plik)) break;
         }
-    ?>
 
-    <?php
-        if (isset($_POST['nazwisko']))
+        if ($znaleziony)
         {
-            if ($_POST['haslo'] == "test")
-                echo $_POST['imie'] . " " . $_POST['nazwisko'] . ", witamy "
-                        . ($_POST['plec'] == "t" ? "Panią" : "Pana") . " w systemie ";
-            else echo "Logowanie nieudane";
+            if ($haslo_przeslane == $haslo_zapisane)
+                echo "$imie_zapisane $nazwisko_zapisane, witamy "
+                    . ($plec_zapisana == "t" ? "Panią" : "Pana") . " w systemie ";
+            else
+                echo "Hasło nieprawidłowe";
         } else
         {
-// formularz generuje tylko gdy dane jeszcze nie były wysyłane 
-            ?>
-            <form method=post action=''>
-                <table border=0 style="margin: 0 auto;">
-                    <tr>
-                        <td>Imię</td>
-                        <td colspan=2>
-                            <input type=text name='imie' size=15 style='text-align: left'>
-                        </td>
-                    </tr>
-                    <!-- te pola nie będą potrzebne, zatem dopisz ten komentarz
-                    <tr><td>Nazwisko</td><td colspan=2>
-                    <input type=text name='nazwisko' size=15 style='text-align: left'></td>
-                    </tr>
-                    <tr><td>Płeć:</td><td>Kobieta</td>
-                    <td><input type="radio" name="plec" value="t"></td>
-                    </tr><tr><td></td>
-                    <td>Mężczyzna</td><td><input type="radio" name="plec" value="f"> </td>
-                    </tr>
-                    -->
-                    <tr>
-                        <td>Hasło</td>
-                        <td colspan=2>
-                            <input type=password name='haslo' size=15 style='text-align:left'>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td colspan=3>
-                            <input type=submit value='Zaloguj się' style='width:200'>
-                        </td>
-                    </tr>
-                </table>
-            </form>
-        <?php } // koniec else ?>
-</div>
+            echo "Użytkownik nie został znaleziony";
+        }
+        fclose($plik);
+    } else
+    {
+        ?>
+        <form method=POST action=''>
+            <table>
+                <tr>
+                    <td>
+                        <label for="imie">Imię</label>
+                    </td>
+                    <td colspan=2>
+                        <input id="imie" type=text name='imie' size=15 style='text-align: left'>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label for="haslo">Hasło</label>
+                    </td>
+                    <td colspan=2>
+                        <input id="haslo" type=password name='haslo' size=15 style='text-align:left'>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan=3 style="padding-top: 10px">
+                        <input type=submit value='Zaloguj się' style='width:100%'>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        <?php
+    }
+?>
 </body>
 </html>
