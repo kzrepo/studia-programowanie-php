@@ -1,0 +1,31 @@
+<!--
+Zbuduj dodatkowo w skrypcie ksiegaGosci.php mały formularz zbudowany z
+pola tekstowego i przycisku „Filtruj”. Jego wciśnięcie powinno wyświetlać tylko
+te wpisy, które w treści mają słowo wpisane do pola tekstowego.
+-->
+
+<html lang="pl">
+<head>
+    <meta charset="utf-8">
+    <title>Księga gości</title>
+    <style>
+        body {margin-top: 30px; text-align: center; background-color: yellow;}
+        form {margin-top: 30px}
+    </style>
+</head>
+<body>
+<h2>Księga Gości.</h2>
+<p>Możesz się dopisać. To co wpiszesz zostanie zapisane na dysku.</p>
+<form action="ksiegaGosci.php" method="get">
+    <label for="imie">Imię</label>
+    <br/>
+    <input id="imie" name="imie" type="text" size="25">
+    <br/><br/>
+    <label for="wpis">Treść</label>
+    <br/>
+    <textarea id="wpis" name="wpis" cols="20" rows="4"></textarea><br/><br/>
+    <input type="submit" value="Zapisz">
+    <input type="reset" value="Wyczyść">
+</form>
+</body>
+</html>

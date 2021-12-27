@@ -1,0 +1,298 @@
+--
+-- Baza danych: `przyjecia`
+--
+CREATE DATABASE IF NOT EXISTS `przyjecia` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;
+USE `przyjecia`;
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `komisja`
+--
+
+CREATE TABLE `komisja` (
+  `login` varchar(30) COLLATE utf8_polish_ci NOT NULL,
+  `haslo` varchar(32) COLLATE utf8_polish_ci NOT NULL,
+  `imie` varchar(30) COLLATE utf8_polish_ci NOT NULL,
+  `nazwisko` varchar(30) COLLATE utf8_polish_ci NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `komisja`
+--
+
+INSERT INTO `komisja` VALUES('aburski', '0c83be9359354edf7c4a1307d8f4f588', 'Adam', 'Burski');
+INSERT INTO `komisja` VALUES('smonczka', 'f868f0b8317b81632523bf223fbf3a78', 'Sylwia', 'Monczka');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `egzamin`
+--
+
+CREATE TABLE `egzamin` (
+  `nazwisko` varchar(25) COLLATE utf8_polish_ci NOT NULL DEFAULT '',
+  `imie` varchar(20) COLLATE utf8_polish_ci NOT NULL DEFAULT '',
+  `miasto` varchar(15) COLLATE utf8_polish_ci NOT NULL DEFAULT '',
+  `data_ur` date NOT NULL DEFAULT '0000-00-00',
+  `wydzial` char(1) COLLATE utf8_polish_ci NOT NULL DEFAULT '',
+  `swiadectwo` float NOT NULL DEFAULT '0',
+  `mat` float NOT NULL DEFAULT '0',
+  `fiz` float NOT NULL DEFAULT '0',
+  `jezyk` float NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_polish_ci;
+
+--
+-- Zrzut danych tabeli `egzamin`
+--
+
+INSERT INTO `egzamin` VALUES('BAJOREK', 'MONIKA', 'WROCŁAW', '1977-08-26', 'B', 4, 1, 1, 2);
+INSERT INTO `egzamin` VALUES('ZBOROWSKA', 'ŁUKASZ', 'WROCŁAW', '1977-06-01', 'A', 12, 2, 3, 5);
+INSERT INTO `egzamin` VALUES('DARAŻ', 'MARZENA', 'WROCŁAW', '1977-03-08', 'B', 9, 3, 5, 1);
+INSERT INTO `egzamin` VALUES('GANCARSKI', 'KAMIL', 'WROCŁAW', '1978-11-11', 'B', 12, 3, 3, 3);
+INSERT INTO `egzamin` VALUES('POGORZELSKA', 'MARTA', 'WROCŁAW', '1977-01-03', 'E', 12, 3, 4, 4);
+INSERT INTO `egzamin` VALUES('RZOŃCA', 'AGNIESZKA', 'WROCŁAW', '1978-05-26', 'B', 1, 3, 3, 4);
+INSERT INTO `egzamin` VALUES('WOLAK', 'ŁUKASZ', 'WROCŁAW', '1977-12-02', 'T', 6, 3, 4, 5);
+INSERT INTO `egzamin` VALUES('POPIELARZ', 'EDYTA', 'WROCŁAW', '1977-07-22', 'A', 4, 4, 4, 1);
+INSERT INTO `egzamin` VALUES('HALIBOŻEK', 'JOLANTA', 'WROCŁAW', '1977-04-14', 'T', 5, 4, 4, 2);
+INSERT INTO `egzamin` VALUES('MADEJ', 'ŁUKASZ', 'WROCŁAW', '1977-08-04', 'E', 2, 4, 4, 2);
+INSERT INTO `egzamin` VALUES('GLIWA', 'ANETA', 'WROCŁAW', '1977-09-10', 'W', 5, 4, 4, 4);
+INSERT INTO `egzamin` VALUES('GWIŻDŻ', 'MAGDALENA', 'WROCŁAW', '1978-06-05', 'W', 2, 4, 4, 4);
+INSERT INTO `egzamin` VALUES('KRÓL', 'BEATA', 'WROCŁAW', '1977-08-17', 'W', 2, 4, 4, 4);
+INSERT INTO `egzamin` VALUES('BUŁAT', 'AGNIESZKA', 'WROCŁAW', '1978-05-13', 'E', 6, 4, 5, 5);
+INSERT INTO `egzamin` VALUES('DYREK', 'MAŁGORZATA', 'WARSZAWA', '1978-12-16', 'B', 8, 1, 1, 5);
+INSERT INTO `egzamin` VALUES('JACH', 'ELŻBIETA', 'WARSZAWA', '1977-02-24', 'A', 5, 2, 2, 1);
+INSERT INTO `egzamin` VALUES('WOJDYŁA', 'MARTA', 'WARSZAWA', '1977-03-23', 'B', 10, 2, 3, 1);
+INSERT INTO `egzamin` VALUES('PIEKNIK', 'WIOLETTA', 'WARSZAWA', '1978-01-03', 'E', 8, 2, 4, 2);
+INSERT INTO `egzamin` VALUES('DZIADOSZ', 'JOLANTA', 'WARSZAWA', '1977-07-25', 'T', 8, 2, 2, 5);
+INSERT INTO `egzamin` VALUES('JAROSZ', 'MARZENA', 'WARSZAWA', '1977-09-29', 'B', 7, 2, 2, 5);
+INSERT INTO `egzamin` VALUES('GOLEŃ', 'ANNA', 'WARSZAWA', '1977-04-19', 'B', 10, 3, 5, 2);
+INSERT INTO `egzamin` VALUES('BIERNACKI', 'PIOTR', 'WARSZAWA', '1977-08-18', 'B', 4, 3, 4, 4);
+INSERT INTO `egzamin` VALUES('GOZDECKA', 'KATARZYNA', 'WARSZAWA', '1977-02-21', 'T', 9, 3, 2, 4);
+INSERT INTO `egzamin` VALUES('ROGOWSKA', 'ANETA', 'WARSZAWA', '1978-11-17', 'T', 5, 4, 3, 4);
+INSERT INTO `egzamin` VALUES('BAL', 'EDYTA', 'WARSZAWA', '1977-10-30', 'A', 5, 4, 5, 5);
+INSERT INTO `egzamin` VALUES('BENICKA', 'IWONA', 'WARSZAWA', '1977-01-13', 'E', 3, 4, 3, 5);
+INSERT INTO `egzamin` VALUES('MAJKA', 'MAŁGORZATA', 'WARSZAWA', '1977-05-19', 'A', 8, 5, 5, 1);
+INSERT INTO `egzamin` VALUES('REDKIEWICZ', 'ROBERT', 'WARSZAWA', '1977-02-07', 'A', 1, 5, 4, 1);
+INSERT INTO `egzamin` VALUES('KUBACKI', 'DANIEL', 'TORUŃ', '1977-11-04', 'B', 5, 2, 3, 2);
+INSERT INTO `egzamin` VALUES('ORZECHOWSKA', 'GRZEGORZ', 'TORUŃ', '1977-02-21', 'W', 4, 4, 5, 3);
+INSERT INTO `egzamin` VALUES('SKAŁA', 'MARIOLA', 'TORUŃ', '1978-09-03', 'A', 8, 4, 3, 3);
+INSERT INTO `egzamin` VALUES('LESIAK', 'MAŁGORZATA', 'TORUŃ', '1977-09-01', 'W', 11, 5, 4, 5);
+INSERT INTO `egzamin` VALUES('JARECKA', 'JADWIGA', 'TORUŃ', '1977-05-27', 'A', 4, 6, 5, 1);
+INSERT INTO `egzamin` VALUES('BARAN', 'EWA', 'SZCZECIN', '1977-11-08', 'E', 3, 3, 3, 3);
+INSERT INTO `egzamin` VALUES('KOZAKIEWICZ', 'MARCIN', 'RZESZÓW', '1977-05-03', 'A', 3, 2, 3, 5);
+INSERT INTO `egzamin` VALUES('RAK', 'AGNIESZKA', 'RZESZÓW', '1977-05-03', 'E', 4, 2, 4, 5);
+INSERT INTO `egzamin` VALUES('WIERZGACZ', 'BERNADETA', 'RZESZÓW', '1977-06-07', 'A', 12, 3, 4, 1);
+INSERT INTO `egzamin` VALUES('SANICKA', 'MONIKA', 'RZESZÓW', '1978-05-18', 'W', 1, 4, 4, 2);
+INSERT INTO `egzamin` VALUES('ŻABÓWKA', 'BARBARA', 'RZESZÓW', '1978-06-02', 'T', 8, 4, 4, 4);
+INSERT INTO `egzamin` VALUES('RECZEK', 'WIOLETTA', 'POZNAŃ', '1978-07-22', 'W', 5, 3, 4, 4);
+INSERT INTO `egzamin` VALUES('ZIOŁA', 'EWA', 'POZNAŃ', '1977-09-07', 'A', 8, 5, 4, 2);
+INSERT INTO `egzamin` VALUES('MASTAJ', 'JOANNA', 'PIŁA', '1977-10-21', 'A', 11, 4, 4, 4);
+INSERT INTO `egzamin` VALUES('TOMASZEWSKA', 'MICHAŁ', 'PIŁA', '1977-12-11', 'A', 3, 4, 4, 4);
+INSERT INTO `egzamin` VALUES('ANDRZEJAK', 'EWA', 'OPOLE', '1978-02-24', 'B', 1, 2, 3, 4);
+INSERT INTO `egzamin` VALUES('KOŁODZIEJ', 'ANNA', 'OPOLE', '1978-06-25', 'A', 6, 3, 4, 1);
+INSERT INTO `egzamin` VALUES('KAPŁON', 'JOLANTA', 'OPOLE', '1977-11-04', 'E', 12, 4, 3, 2);
+INSERT INTO `egzamin` VALUES('GAJOWSKA', 'JOANNA', 'OPOLE', '1977-03-01', 'W', 11, 4, 4, 4);
+INSERT INTO `egzamin` VALUES('WRONA', 'KATARZYNA', 'OPOLE', '1977-12-21', 'W', 9, 4, 5, 4);
+INSERT INTO `egzamin` VALUES('MAJKA', 'MAŁGORZATA', 'OPOLE', '1978-06-08', 'W', 5, 5, 4, 2);
+INSERT INTO `egzamin` VALUES('WARDZAŁA', 'MARIOLA', 'NOWY SĄCZ', '1977-01-22', 'T', 9, 2, 2, 1);
+INSERT INTO `egzamin` VALUES('FALISZEK', 'WIOLETTA', 'NOWY SĄCZ', '1977-03-16', 'A', 10, 2, 4, 3);
+INSERT INTO `egzamin` VALUES('DUBIEL', 'EWELINA', 'NOWY SĄCZ', '1977-03-16', 'E', 8, 3, 4, 2);
+INSERT INTO `egzamin` VALUES('GABRYEL', 'AGNIESZKA', 'NOWY SĄCZ', '1977-11-23', 'E', 10, 3, 2, 2);
+INSERT INTO `egzamin` VALUES('WINIARSKA', 'AGATA', 'NOWY SĄCZ', '1977-01-18', 'T', 3, 3, 4, 2);
+INSERT INTO `egzamin` VALUES('WOŻNIAK', 'ŁUKASZ', 'NOWY SĄCZ', '1977-07-10', 'T', 8, 3, 3, 3);
+INSERT INTO `egzamin` VALUES('ZIOMEK', 'MAGDALENA', 'NOWY SĄCZ', '1977-06-26', 'B', 6, 3, 3, 3);
+INSERT INTO `egzamin` VALUES('LUPA', 'IZABELA', 'NOWY SĄCZ', '1977-02-05', 'B', 8, 3, 3, 4);
+INSERT INTO `egzamin` VALUES('WARCHOŁ', 'ANNA', 'NOWY SĄCZ', '1978-09-07', 'T', 9, 4, 4, 1);
+INSERT INTO `egzamin` VALUES('KALISZ', 'DOROTA', 'ŁÓDŹ', '1977-03-04', 'A', 6, 5, 4, 4);
+INSERT INTO `egzamin` VALUES('PATLA', 'AGATA', 'LUBLIN', '1977-04-26', 'W', 4, 2, 4, 1);
+INSERT INTO `egzamin` VALUES('WIERZGACZ', 'ŁUKASZ', 'LUBLIN', '1977-11-16', 'W', 6, 2, 3, 2);
+INSERT INTO `egzamin` VALUES('RAFA', 'KATARZYNA', 'LUBLIN', '1977-08-03', 'E', 11, 2, 3, 3);
+INSERT INTO `egzamin` VALUES('WOJDYŁA', 'ANNA', 'LUBLIN', '1977-07-12', 'W', 5, 3, 4, 2);
+INSERT INTO `egzamin` VALUES('WIĘCEK', 'GRAŻYNA', 'LUBLIN', '1977-06-03', 'W', 9, 3, 3, 3);
+INSERT INTO `egzamin` VALUES('GÓRCZANY', 'CZESŁAW', 'LUBLIN', '1977-06-24', 'B', 5, 3, 4, 5);
+INSERT INTO `egzamin` VALUES('DŁUGOSZ', 'BARBARA', 'LUBLIN', '1977-05-13', 'A', 2, 4, 5, 3);
+INSERT INTO `egzamin` VALUES('SZYMAŃSKI', 'ANNA', 'KRAKÓW', '1978-08-02', 'B', 2, 1, 1, 1);
+INSERT INTO `egzamin` VALUES('JASICZEK', 'IWONA', 'KRAKÓW', '1977-11-28', 'B', 7, 1, 1, 2);
+INSERT INTO `egzamin` VALUES('SOKOŁOWSKA', 'MONIKA', 'KRAKÓW', '1977-07-29', 'B', 2, 1, 1, 4);
+INSERT INTO `egzamin` VALUES('MACIEJCZYK', 'MAGDALENA', 'KRAKÓW', '1977-01-01', 'B', 5, 1, 1, 5);
+INSERT INTO `egzamin` VALUES('WIETECHA', 'TOMASZ', 'KRAKÓW', '1977-03-07', 'B', 4, 1, 1, 5);
+INSERT INTO `egzamin` VALUES('CZAPLA', 'ANNA', 'KRAKÓW', '1977-03-29', 'T', 1, 2, 2, 1);
+INSERT INTO `egzamin` VALUES('KALECIAK', 'IZABELA', 'KRAKÓW', '1977-04-03', 'B', 12, 2, 2, 2);
+INSERT INTO `egzamin` VALUES('MENDELA', 'MATEUSZ', 'KRAKÓW', '1977-01-14', 'B', 3, 2, 3, 2);
+INSERT INTO `egzamin` VALUES('RAKOCZY', 'MARTA', 'KRAKÓW', '1977-02-22', 'W', 10, 2, 4, 2);
+INSERT INTO `egzamin` VALUES('ZBYLUT', 'WIOLETTA', 'KRAKÓW', '1977-07-23', 'E', 3, 2, 3, 2);
+INSERT INTO `egzamin` VALUES('BILSKA', 'MAŁGORZATA', 'KRAKÓW', '1978-04-14', 'B', 10, 2, 3, 3);
+INSERT INTO `egzamin` VALUES('KLIMKIEWICZ', 'MAŁGORZATA', 'KRAKÓW', '1978-01-03', 'W', 6, 2, 4, 3);
+INSERT INTO `egzamin` VALUES('PIEKARZ', 'KATARZYNA', 'KRAKÓW', '1977-07-23', 'A', 3, 2, 4, 3);
+INSERT INTO `egzamin` VALUES('SAJDAK', 'TERESA', 'KRAKÓW', '1977-01-11', 'B', 4, 2, 2, 3);
+INSERT INTO `egzamin` VALUES('WAL', 'AGNIESZKA', 'KRAKÓW', '1977-04-14', 'E', 3, 2, 2, 3);
+INSERT INTO `egzamin` VALUES('WINOGRODZKA', 'JOANNA', 'KRAKÓW', '1978-12-24', 'E', 1, 2, 3, 3);
+INSERT INTO `egzamin` VALUES('WRÓBEL', 'URSZULA', 'KRAKÓW', '1977-08-27', 'B', 11, 2, 3, 3);
+INSERT INTO `egzamin` VALUES('FIAŁKIEWICZ', 'MAGDALENA', 'KRAKÓW', '1977-11-22', 'E', 11, 2, 4, 4);
+INSERT INTO `egzamin` VALUES('IDZIK', 'MAGDALENA', 'KRAKÓW', '1977-05-01', 'T', 4, 2, 3, 4);
+INSERT INTO `egzamin` VALUES('STEC', 'DOROTA', 'KRAKÓW', '1977-02-25', 'A', 8, 2, 4, 4);
+INSERT INTO `egzamin` VALUES('CZEKALSKA', 'ROBERT', 'KRAKÓW', '1977-12-12', 'B', 5, 2, 3, 5);
+INSERT INTO `egzamin` VALUES('GRELA', 'ELŻBIETA', 'KRAKÓW', '1977-03-09', 'A', 5, 2, 3, 5);
+INSERT INTO `egzamin` VALUES('KMIOTEK', 'PIOTR', 'KRAKÓW', '1977-11-04', 'B', 10, 2, 3, 5);
+INSERT INTO `egzamin` VALUES('KNAPIK', 'MIROSŁAW', 'KRAKÓW', '1977-06-07', 'B', 5, 2, 3, 5);
+INSERT INTO `egzamin` VALUES('MAREK', 'ANNA', 'KRAKÓW', '1978-05-10', 'B', 4, 2, 4, 5);
+INSERT INTO `egzamin` VALUES('SZAREK', 'KATARZYNA', 'KRAKÓW', '1977-01-04', 'T', 3, 2, 3, 5);
+INSERT INTO `egzamin` VALUES('SZETLAK', 'MAŁGORZATA', 'KRAKÓW', '1978-04-07', 'E', 1, 2, 3, 5);
+INSERT INTO `egzamin` VALUES('ZBOROWSKA', 'ALDONA', 'KRAKÓW', '1978-03-08', 'T', 3, 2, 2, 5);
+INSERT INTO `egzamin` VALUES('BOCHENEK', 'MARIUSZ', 'KRAKÓW', '1978-06-13', 'B', 9, 3, 3, 1);
+INSERT INTO `egzamin` VALUES('DYBOWSKI', 'BOGUSŁAW', 'KRAKÓW', '1977-10-20', 'T', 3, 3, 3, 1);
+INSERT INTO `egzamin` VALUES('GIERLICKA', 'MAGDALENA', 'KRAKÓW', '1977-04-24', 'A', 4, 3, 4, 1);
+INSERT INTO `egzamin` VALUES('GOMUŁKA', 'URSZULA', 'KRAKÓW', '1977-06-20', 'W', 8, 3, 4, 1);
+INSERT INTO `egzamin` VALUES('GORCZYCA', 'ŁUKASZ', 'KRAKÓW', '1977-02-03', 'W', 5, 3, 3, 1);
+INSERT INTO `egzamin` VALUES('JARNIEWSKA', 'DARIUSZ', 'KRAKÓW', '1977-11-07', 'E', 7, 3, 5, 1);
+INSERT INTO `egzamin` VALUES('KORZEC', 'BARBARA', 'KRAKÓW', '1977-05-01', 'W', 5, 3, 2, 1);
+INSERT INTO `egzamin` VALUES('NOWOSIELSKA', 'AGNIESZKA', 'KRAKÓW', '1977-09-04', 'A', 6, 3, 3, 1);
+INSERT INTO `egzamin` VALUES('CHAJEC', 'ALEKSANDRA', 'KRAKÓW', '1977-07-01', 'W', 1, 3, 4, 2);
+INSERT INTO `egzamin` VALUES('DYKAS', 'EDYTA', 'KRAKÓW', '1977-01-02', 'W', 9, 3, 3, 2);
+INSERT INTO `egzamin` VALUES('KALETA', 'ANNA', 'KRAKÓW', '1977-01-17', 'W', 10, 3, 3, 2);
+INSERT INTO `egzamin` VALUES('WIERZGACZ', 'ANNA', 'KRAKÓW', '1977-07-27', 'T', 8, 3, 4, 2);
+INSERT INTO `egzamin` VALUES('WOLSKA', 'AGNIESZKA', 'KRAKÓW', '1977-01-22', 'A', 12, 3, 4, 2);
+INSERT INTO `egzamin` VALUES('WSZOŁEK', 'BOGUSŁAWA', 'KRAKÓW', '1977-06-05', 'T', 10, 3, 2, 2);
+INSERT INTO `egzamin` VALUES('BILSKA', 'MAŁGORZATA', 'KRAKÓW', '1978-07-01', 'W', 3, 3, 4, 3);
+INSERT INTO `egzamin` VALUES('FIK', 'AGNIESZKA', 'KRAKÓW', '1977-05-14', 'T', 12, 3, 4, 3);
+INSERT INTO `egzamin` VALUES('KRÓL', 'EWA', 'KRAKÓW', '1977-08-03', 'B', 10, 3, 4, 3);
+INSERT INTO `egzamin` VALUES('MYTKOWICZ', 'DANIEL', 'KRAKÓW', '1977-02-09', 'B', 2, 3, 4, 3);
+INSERT INTO `egzamin` VALUES('PYZIK', 'SŁAWOMIR', 'KRAKÓW', '1977-11-29', 'W', 8, 3, 3, 3);
+INSERT INTO `egzamin` VALUES('GORCZYCA', 'MONIKA', 'KRAKÓW', '1977-10-25', 'E', 8, 3, 4, 4);
+INSERT INTO `egzamin` VALUES('KOWALSKA', 'ŁUKASZ', 'KRAKÓW', '1977-03-02', 'A', 9, 3, 4, 4);
+INSERT INTO `egzamin` VALUES('LATOSZEK', 'AGNIESZKA', 'KRAKÓW', '1978-08-15', 'E', 11, 3, 4, 4);
+INSERT INTO `egzamin` VALUES('RAK', 'KRZYSZTOF', 'KRAKÓW', '1977-02-17', 'B', 10, 3, 3, 4);
+INSERT INTO `egzamin` VALUES('ROPA', 'WOJCIECH', 'KRAKÓW', '1977-11-03', 'A', 3, 3, 3, 4);
+INSERT INTO `egzamin` VALUES('SYPIEŃ', 'AGNIESZKA', 'KRAKÓW', '1977-09-23', 'E', 1, 3, 4, 4);
+INSERT INTO `egzamin` VALUES('SZLACHTA', 'KATARZYNA', 'KRAKÓW', '1977-01-12', 'B', 1, 3, 3, 4);
+INSERT INTO `egzamin` VALUES('TOKARZ', 'JUSTYNA', 'KRAKÓW', '1977-01-23', 'B', 9, 3, 3, 4);
+INSERT INTO `egzamin` VALUES('BROCŁAWIK', 'ANETA', 'KRAKÓW', '1977-04-30', 'W', 10, 3, 3, 5);
+INSERT INTO `egzamin` VALUES('GAWRON', 'RENATA', 'KRAKÓW', '1977-05-07', 'B', 3, 3, 4, 5);
+INSERT INTO `egzamin` VALUES('KOTULAK', 'JACEK', 'KRAKÓW', '1978-09-11', 'A', 10, 3, 4, 5);
+INSERT INTO `egzamin` VALUES('OCHOŁEK', 'MAGDALENA', 'KRAKÓW', '1978-04-22', 'T', 4, 3, 4, 5);
+INSERT INTO `egzamin` VALUES('RODAK', 'MARZENA', 'KRAKÓW', '1977-10-16', 'E', 6, 3, 4, 5);
+INSERT INTO `egzamin` VALUES('RUCIŃSKI', 'JOANNA', 'KRAKÓW', '1977-10-28', 'A', 11, 3, 3, 5);
+INSERT INTO `egzamin` VALUES('TYBINKA', 'EWA', 'KRAKÓW', '1977-10-19', 'W', 5, 3, 3, 5);
+INSERT INTO `egzamin` VALUES('DZIADOSZ', 'MARCIN', 'KRAKÓW', '1977-08-02', 'W', 8, 4, 4, 1);
+INSERT INTO `egzamin` VALUES('DZIEDZIC', 'MAGDALENA', 'KRAKÓW', '1977-10-08', 'E', 9, 4, 4, 1);
+INSERT INTO `egzamin` VALUES('FUDACZ', 'BEATA', 'KRAKÓW', '1977-11-18', 'E', 5, 4, 5, 1);
+INSERT INTO `egzamin` VALUES('GAŁUSZKA', 'MONIKA', 'KRAKÓW', '1977-01-18', 'E', 8, 4, 3, 1);
+INSERT INTO `egzamin` VALUES('PRASZEK', 'ANNA', 'KRAKÓW', '1977-11-22', 'B', 1, 4, 4, 1);
+INSERT INTO `egzamin` VALUES('SZEWCZYK', 'IWONA', 'KRAKÓW', '1978-02-13', 'A', 10, 4, 5, 1);
+INSERT INTO `egzamin` VALUES('WOJDYŁA', 'BOŻENA', 'KRAKÓW', '1977-04-01', 'E', 5, 4, 4, 1);
+INSERT INTO `egzamin` VALUES('BROŻYNA', 'BEATA', 'KRAKÓW', '1977-06-20', 'W', 12, 4, 3, 2);
+INSERT INTO `egzamin` VALUES('GLIWA', 'EWA', 'KRAKÓW', '1977-04-04', 'E', 1, 4, 4, 2);
+INSERT INTO `egzamin` VALUES('KOWALSKA', 'MAGDALENA', 'KRAKÓW', '1977-11-08', 'A', 5, 4, 4, 2);
+INSERT INTO `egzamin` VALUES('MICHALIK', 'MONIKA', 'KRAKÓW', '1977-02-28', 'T', 5, 4, 4, 2);
+INSERT INTO `egzamin` VALUES('PROKOP', 'ARKADIUSZ', 'KRAKÓW', '1978-10-22', 'T', 6, 4, 4, 2);
+INSERT INTO `egzamin` VALUES('TRYBEK', 'KATARZYNA', 'KRAKÓW', '1978-12-04', 'E', 5, 4, 5, 2);
+INSERT INTO `egzamin` VALUES('BOGUSZ', 'IWONA', 'KRAKÓW', '1977-04-10', 'E', 9, 4, 3, 3);
+INSERT INTO `egzamin` VALUES('CIOMBOR', 'SABINA', 'KRAKÓW', '1977-03-10', 'T', 8, 4, 4, 3);
+INSERT INTO `egzamin` VALUES('CWEJNAR', 'EWELINA', 'KRAKÓW', '1977-07-15', 'T', 9, 4, 4, 3);
+INSERT INTO `egzamin` VALUES('DZIEDZIC', 'MONIKA', 'KRAKÓW', '1978-01-17', 'T', 2, 4, 4, 3);
+INSERT INTO `egzamin` VALUES('JARECKA', 'GRZEGORZ', 'KRAKÓW', '1977-11-02', 'A', 3, 4, 4, 3);
+INSERT INTO `egzamin` VALUES('KRIMMER', 'KATARZYNA', 'KRAKÓW', '1977-11-18', 'A', 2, 4, 5, 3);
+INSERT INTO `egzamin` VALUES('KUROWSKA', 'ANNA', 'KRAKÓW', '1978-06-14', 'B', 10, 4, 3, 3);
+INSERT INTO `egzamin` VALUES('RZOŃCA', 'DOROTA', 'KRAKÓW', '1977-02-13', 'A', 6, 4, 4, 3);
+INSERT INTO `egzamin` VALUES('STRZAŁKA', 'JULITA', 'KRAKÓW', '1977-11-02', 'B', 11, 4, 3, 3);
+INSERT INTO `egzamin` VALUES('SZWAST', 'DARIUSZ', 'KRAKÓW', '1977-08-21', 'E', 6, 4, 4, 3);
+INSERT INTO `egzamin` VALUES('BOBULSKA', 'WIOLETTA', 'KRAKÓW', '1977-07-02', 'B', 5, 4, 3, 4);
+INSERT INTO `egzamin` VALUES('KOSIBA', 'IWONA', 'KRAKÓW', '1977-03-01', 'E', 10, 4, 3, 4);
+INSERT INTO `egzamin` VALUES('KOSIBA', 'RENATA', 'KRAKÓW', '1977-04-18', 'W', 8, 4, 4, 4);
+INSERT INTO `egzamin` VALUES('LAWERA', 'AGNIESZKA', 'KRAKÓW', '1977-05-30', 'T', 3, 4, 3, 4);
+INSERT INTO `egzamin` VALUES('MARCZYK', 'MARIUSZ', 'KRAKÓW', '1978-08-27', 'T', 6, 4, 3, 4);
+INSERT INTO `egzamin` VALUES('MASTEJ', 'MARCIN', 'KRAKÓW', '1978-07-19', 'E', 8, 4, 3, 4);
+INSERT INTO `egzamin` VALUES('SIKORSKA', 'DAWID', 'KRAKÓW', '1978-12-16', 'T', 3, 4, 3, 4);
+INSERT INTO `egzamin` VALUES('SMALARZ', 'SYLWIA', 'KRAKÓW', '1978-11-09', 'B', 11, 4, 3, 4);
+INSERT INTO `egzamin` VALUES('ZABAWA', 'MARTA', 'KRAKÓW', '1977-12-22', 'W', 9, 4, 5, 4);
+INSERT INTO `egzamin` VALUES('BARAN', 'EDYTA', 'KRAKÓW', '1977-04-19', 'A', 12, 4, 4, 5);
+INSERT INTO `egzamin` VALUES('SOWIŃSKI', 'PRZEMYSŁAW', 'KRAKÓW', '1977-04-30', 'B', 5, 4, 5, 5);
+INSERT INTO `egzamin` VALUES('SOWIŻRAŁ', 'RENATA', 'KRAKÓW', '1977-06-25', 'B', 11, 4, 3, 5);
+INSERT INTO `egzamin` VALUES('SZTORC', 'AGNIESZKA', 'KRAKÓW', '1977-11-14', 'T', 11, 4, 4, 5);
+INSERT INTO `egzamin` VALUES('WÓJCIK', 'MARCIN', 'KRAKÓW', '1977-10-16', 'W', 6, 5, 4, 1);
+INSERT INTO `egzamin` VALUES('BREJ', 'ANNA', 'KRAKÓW', '1977-05-09', 'W', 12, 5, 4, 2);
+INSERT INTO `egzamin` VALUES('KRUPA', 'TOMASZ', 'KRAKÓW', '1977-10-30', 'A', 12, 5, 3, 2);
+INSERT INTO `egzamin` VALUES('WOJDYŁA', 'AGNIESZKA', 'KRAKÓW', '1978-06-21', 'B', 11, 5, 4, 2);
+INSERT INTO `egzamin` VALUES('WOJDYŁA', 'KATARZYNA', 'KRAKÓW', '1977-12-09', 'A', 10, 5, 5, 2);
+INSERT INTO `egzamin` VALUES('BROCŁAWIK', 'MAŁGORZATA', 'KRAKÓW', '1977-12-08', 'E', 1, 5, 4, 3);
+INSERT INTO `egzamin` VALUES('LESZKIEWICZ', 'BARBARA', 'KRAKÓW', '1977-06-19', 'A', 9, 5, 4, 3);
+INSERT INTO `egzamin` VALUES('RYMARZ', 'ELŻBIETA', 'KRAKÓW', '1978-06-04', 'E', 2, 5, 4, 4);
+INSERT INTO `egzamin` VALUES('GRUCA', 'ANDŻELIKA', 'KONIN', '1978-12-09', 'B', 8, 1, 1, 1);
+INSERT INTO `egzamin` VALUES('ZIĘBA', 'ADRIAN', 'KONIN', '1977-10-28', 'B', 1, 4, 5, 3);
+INSERT INTO `egzamin` VALUES('KNUTELSKA', 'SABINA', 'KONIN', '1978-07-19', 'T', 5, 4, 4, 4);
+INSERT INTO `egzamin` VALUES('RYBA', 'MONIKA', 'KOŁOBRZEG', '1977-02-05', 'B', 8, 2, 2, 3);
+INSERT INTO `egzamin` VALUES('DZIK', 'DOROTA', 'KOŁOBRZEG', '1977-03-04', 'A', 1, 3, 4, 1);
+INSERT INTO `egzamin` VALUES('KOŁODZIEJ', 'JOLANTA', 'KOŁOBRZEG', '1977-04-12', 'T', 5, 4, 4, 4);
+INSERT INTO `egzamin` VALUES('SOŁTYS', 'AGATA', 'KOŁOBRZEG', '1977-07-23', 'A', 6, 4, 5, 5);
+INSERT INTO `egzamin` VALUES('BAMBROWICZ', 'GABRIELA', 'KOŁOBRZEG', '1978-05-15', 'W', 7, 5, 4, 4);
+INSERT INTO `egzamin` VALUES('FILIPAK', 'ANNA', 'KIELCE', '1977-02-13', 'B', 5, 1, 1, 3);
+INSERT INTO `egzamin` VALUES('MÓL', 'JUSTYNA', 'KIELCE', '1978-01-03', 'A', 3, 2, 3, 1);
+INSERT INTO `egzamin` VALUES('WANAT', 'MARCIN', 'KIELCE', '1978-10-06', 'W', 4, 2, 3, 1);
+INSERT INTO `egzamin` VALUES('BURDA', 'IWONA', 'KIELCE', '1977-03-26', 'T', 10, 3, 3, 2);
+INSERT INTO `egzamin` VALUES('DACHOWSKI', 'ANNA', 'KIELCE', '1977-12-29', 'E', 2, 4, 4, 3);
+INSERT INTO `egzamin` VALUES('MATYASIK', 'AGATA', 'KIELCE', '1977-04-17', 'A', 5, 4, 4, 4);
+INSERT INTO `egzamin` VALUES('METYCH', 'MONIKA', 'KIELCE', '1977-08-06', 'W', 9, 5, 5, 4);
+INSERT INTO `egzamin` VALUES('PIECUCH', 'LIDIA', 'KIELCE', '1977-11-26', 'A', 6, 6, 4, 1);
+INSERT INTO `egzamin` VALUES('FAŁAT', 'MICHAŁ', 'KIELCE', '1977-07-08', 'A', 4, 0, 0, 0);
+INSERT INTO `egzamin` VALUES('PRASKOWICZ', 'MARCIN', 'KATOWICE', '1977-10-30', 'B', 11, 2, 2, 2);
+INSERT INTO `egzamin` VALUES('JAMROZY', 'MAGDALENA', 'KATOWICE', '1977-03-01', 'B', 2, 2, 4, 3);
+INSERT INTO `egzamin` VALUES('HAJNOSZ', 'ANNA', 'KATOWICE', '1978-08-12', 'E', 12, 2, 4, 5);
+INSERT INTO `egzamin` VALUES('KOWALSKA', 'ANNA', 'KATOWICE', '1977-09-26', 'W', 7, 3, 4, 1);
+INSERT INTO `egzamin` VALUES('GRZESIAK', 'KRZYSZTOF', 'KATOWICE', '1977-02-01', 'E', 9, 3, 4, 2);
+INSERT INTO `egzamin` VALUES('WIELGOSZ', 'MAGDALENA', 'KATOWICE', '1977-08-05', 'A', 1, 3, 4, 3);
+INSERT INTO `egzamin` VALUES('GORGOSZ', 'IWONA', 'KATOWICE', '1978-11-25', 'B', 4, 3, 4, 4);
+INSERT INTO `egzamin` VALUES('KRÓL', 'SABINA', 'KATOWICE', '1977-06-22', 'A', 11, 3, 5, 4);
+INSERT INTO `egzamin` VALUES('MADEJ', 'AGNIESZKA', 'KATOWICE', '1977-12-19', 'T', 4, 3, 4, 4);
+INSERT INTO `egzamin` VALUES('PIKUŁA', 'ELŻBIETA', 'KATOWICE', '1977-05-29', 'W', 1, 4, 4, 3);
+INSERT INTO `egzamin` VALUES('SYREK', 'MAGDALENA', 'KALISZ', '1977-11-22', 'W', 1, 2, 2, 4);
+INSERT INTO `egzamin` VALUES('WOJTUNIK', 'MAŁGORZATA', 'KALISZ', '1978-11-30', 'E', 1, 2, 3, 5);
+INSERT INTO `egzamin` VALUES('MAZUR', 'MONIKA', 'KALISZ', '1977-04-22', 'A', 11, 3, 4, 1);
+INSERT INTO `egzamin` VALUES('MAZUREK', 'ELŻBIETA', 'KALISZ', '1978-08-12', 'T', 1, 3, 4, 1);
+INSERT INTO `egzamin` VALUES('NOWACKA', 'MARIA', 'KALISZ', '1977-03-02', 'T', 11, 3, 4, 2);
+INSERT INTO `egzamin` VALUES('CUPAK', 'ŁUKASZ', 'KALISZ', '1977-07-13', 'A', 9, 4, 5, 1);
+INSERT INTO `egzamin` VALUES('SMOŁUCHA', 'RAFAŁ', 'KALISZ', '1977-06-18', 'A', 8, 4, 5, 2);
+INSERT INTO `egzamin` VALUES('KOBAK', 'ANNA', 'KALISZ', '1978-12-12', 'T', 7, 0, 0, 0);
+INSERT INTO `egzamin` VALUES('MOTKOWICZ', 'MONIKA', 'JELENIA GÓRA', '1978-08-27', 'T', 5, 1, 1, 3);
+INSERT INTO `egzamin` VALUES('KASPRZYK', 'ANNA', 'JELENIA GÓRA', '1977-11-07', 'E', 4, 3, 5, 4);
+INSERT INTO `egzamin` VALUES('ŻYCHOWSKA', 'AGNIESZKA', 'JELENIA GÓRA', '1978-01-21', 'A', 3, 4, 4, 1);
+INSERT INTO `egzamin` VALUES('JAWORSKA', 'EWELINA', 'JELENIA GÓRA', '1977-03-08', 'W', 12, 4, 4, 3);
+INSERT INTO `egzamin` VALUES('POLIWKA', 'AGNIESZKA', 'JELENIA GÓRA', '1977-04-20', 'A', 4, 4, 4, 3);
+INSERT INTO `egzamin` VALUES('PRUCHNIK', 'AGATA', 'JELENIA GÓRA', '1977-01-05', 'T', 9, 4, 2, 5);
+INSERT INTO `egzamin` VALUES('MACHOWSKA', 'MARCIN', 'GDAŃSK', '1977-06-03', 'W', 1, 2, 3, 4);
+INSERT INTO `egzamin` VALUES('POTĘPA', 'MONIKA', 'GDAŃSK', '1977-06-14', 'W', 2, 3, 4, 3);
+INSERT INTO `egzamin` VALUES('KNAPIK', 'BEATA', 'GDAŃSK', '1978-09-10', 'B', 10, 4, 3, 4);
+INSERT INTO `egzamin` VALUES('Przybycień', 'Krzysztof', 'Nowy Sącz', '2000-10-10', 'I', 1, 3, 2, 4);
+INSERT INTO `egzamin` VALUES('Adamski', 'Petroniusz', 'Stary Sącz', '1990-09-09', 'I', 5, 3, 4, 3);
+INSERT INTO `egzamin` VALUES('STYGAR', 'DAWID', 'CZĘSTOCHOWA', '1977-05-23', 'B', 5, 2, 4, 3);
+INSERT INTO `egzamin` VALUES('LEWANDA', 'SEBASTIAN', 'CZĘSTOCHOWA', '1977-05-07', 'B', 10, 2, 2, 5);
+INSERT INTO `egzamin` VALUES('RAK', 'ANETA', 'CZĘSTOCHOWA', '1978-01-25', 'B', 8, 3, 2, 1);
+INSERT INTO `egzamin` VALUES('PAPROCKA', 'ELŻBIETA', 'CZĘSTOCHOWA', '1977-12-17', 'T', 4, 3, 3, 4);
+INSERT INTO `egzamin` VALUES('ĆWIERTNIA', 'KATARZYNA', 'CZĘSTOCHOWA', '1977-04-04', 'T', 11, 4, 3, 4);
+INSERT INTO `egzamin` VALUES('RAK', 'EWA', 'CZĘSTOCHOWA', '1977-05-15', 'B', 4, 4, 3, 5);
+INSERT INTO `egzamin` VALUES('KOSIŃSKA', 'MONIKA', 'CZĘSTOCHOWA', '1977-10-14', 'T', 12, 5, 3, 3);
+INSERT INTO `egzamin` VALUES('TRZECIAK', 'JOANNA', 'CIESZYN', '1977-12-02', 'B', 8, 1, 1, 4);
+INSERT INTO `egzamin` VALUES('PRZEWOŻNIK', 'AGATA', 'CIESZYN', '1977-06-03', 'T', 3, 2, 4, 1);
+INSERT INTO `egzamin` VALUES('SPÓLNIK', 'MAŁGORZATA', 'CIESZYN', '1977-12-25', 'A', 12, 2, 4, 4);
+INSERT INTO `egzamin` VALUES('SANOKOWSKA', 'TOMASZ', 'CIESZYN', '1978-07-18', 'E', 6, 3, 3, 2);
+INSERT INTO `egzamin` VALUES('BACIAK', 'BARBARA', 'CIESZYN', '1977-03-30', 'E', 8, 3, 3, 3);
+INSERT INTO `egzamin` VALUES('KUDŁAWIEC', 'RADOSŁAW', 'CIESZYN', '1977-09-29', 'E', 12, 4, 4, 1);
+INSERT INTO `egzamin` VALUES('JURUSIK', 'ANETA', 'CHEŁM', '1977-08-03', 'E', 5, 2, 3, 3);
+INSERT INTO `egzamin` VALUES('SZREBKA', 'LIDIA', 'CHEŁM', '1977-01-15', 'W', 1, 2, 3, 5);
+INSERT INTO `egzamin` VALUES('WĘGRZYNOWICZ', 'EWELINA', 'CHEŁM', '1977-12-29', 'A', 10, 3, 3, 1);
+INSERT INTO `egzamin` VALUES('JUSZCZYK', 'SYLWIA', 'CHEŁM', '1977-03-26', 'E', 7, 3, 4, 2);
+INSERT INTO `egzamin` VALUES('SZOT', 'URSZULA', 'CHEŁM', '1977-07-01', 'T', 2, 3, 4, 4);
+INSERT INTO `egzamin` VALUES('GIEMZA', 'BEATA', 'CHEŁM', '1978-07-05', 'W', 5, 4, 5, 2);
+INSERT INTO `egzamin` VALUES('MALEWSKI', 'KRZYSZTOF', 'CHEŁM', '1978-08-21', 'B', 6, 0, 0, 0);
+INSERT INTO `egzamin` VALUES('GIZARA', 'AGNIESZKA', 'BIAŁYSTOK', '1977-02-02', 'B', 12, 1, 1, 5);
+INSERT INTO `egzamin` VALUES('BLICHARZ', 'GRZEGORZ', 'BIAŁYSTOK', '1978-03-16', 'A', 7, 2, 2, 2);
+INSERT INTO `egzamin` VALUES('WASILEWSKA', 'BARBARA', 'BIAŁYSTOK', '1977-11-09', 'B', 9, 2, 3, 3);
+INSERT INTO `egzamin` VALUES('TRZNADEL', 'STANISŁAW', 'BIAŁYSTOK', '1977-10-02', 'A', 2, 2, 3, 5);
+INSERT INTO `egzamin` VALUES('KNAPIK', 'MATEUSZ', 'BIAŁYSTOK', '1977-07-17', 'T', 4, 3, 3, 1);
+INSERT INTO `egzamin` VALUES('MASTEJ', 'ELŻBIETA', 'BIAŁYSTOK', '1978-09-15', 'B', 8, 3, 3, 1);
+INSERT INTO `egzamin` VALUES('TULEJA', 'EWA', 'BIAŁYSTOK', '1977-07-26', 'W', 9, 4, 4, 3);
+INSERT INTO `egzamin` VALUES('WOJNAROWICZ', 'PATRYCJA', 'BIAŁYSTOK', '1977-11-23', 'W', 7, 4, 4, 3);
+INSERT INTO `egzamin` VALUES('LESSNAU', 'EWELINA', 'BIAŁYSTOK', '1977-04-26', 'W', 2, 4, 5, 4);
+INSERT INTO `egzamin` VALUES('BERDECHOWSKA', 'TADEUSZ', 'BIAŁYSTOK', '1977-08-17', 'E', 8, 4, 4, 5);
+INSERT INTO `egzamin` VALUES('SZERSZEŃ', 'ARKADIUSZ', 'BIAŁYSTOK', '1978-06-28', 'A', 8, 5, 4, 4);
+COMMIT;

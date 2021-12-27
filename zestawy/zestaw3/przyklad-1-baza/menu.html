@@ -1,0 +1,34 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title></title>
+</head>
+<body bgcolor=yellow text="#000FFF">
+<hr><center>
+
+<!-- sposób 1: menu z przycisków zmieniających location -->
+<input type=button value=" Kandydaci " onClick="window.location='kandydaci.php'"> 
+<input type=button value=" Najlepsi " onClick="window.location='najlepsi.php'">
+<input type=button value=" Dodaj " onClick="window.location='dodaj.html'">
+
+
+<!-- sposób 2: menu z formularza zawierającego przyciski-submity zmieniające action przed wysłaniem
+<form name=menu>
+<input type=submit value=" Kandydaci " onClick="window.document.forms[0].action='kandydaci.php'"> 
+<input type=submit value=" Najlepsi " onClick="document.menu.action='najlepsi.php'">
+<input type=submit value=" Dodaj " onClick="action='dodaj.html'">
+</form>
+-->
+
+<!-- sposób 3: menu z hyperlinków 
+<h3>
+<a href='kandydaci.php'> Kandydaci </a>&nbsp; 
+<a href='najlepsi.php'> Najlepsi </a>&nbsp; 
+<a href='dodaj.html'> Dodaj </a>&nbsp; 
+</h3>
+-->
+
+<hr>
+</center>
+</body>
+</html>
