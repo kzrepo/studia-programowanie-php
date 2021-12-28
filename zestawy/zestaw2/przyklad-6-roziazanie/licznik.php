@@ -9,17 +9,33 @@ Może się przydać: file_exists(), fopen(), fgets(), fputs(), fclose(), flock()
 -->
 
 <?php
-
+    $czy_odwiedziny = $_GET['odwiedziny'] ?? null;
     // czyta wartość licznika z pliku
+    $nazwa_pliku = 'licznik.txt';
+    $plik = fopen($nazwa_pliku, 'r') or exit("Nie można otworzyć pliku $nazwa_pliku");
+    $licznik = fgets($plik);
+    fclose($plik);
 
     // zwiększa wartość licznika (uważamy na zrobienie tego przy odświeżeniu strony)
+    if (empty($czy_odwiedziny))
+    {
+        $licznik += 1;
+    }
 
     // zapisuje wartość licznika do pliku (chroniąc się przed jednoczesnym zapisem za pomocą funkcji flock())
+    $plik = fopen($nazwa_pliku, 'w') or exit("Nie można otworzyć pliku $nazwa_pliku");
+    if (flock($plik, LOCK_EX))
+    {
+        fputs($plik, $licznik);
+    } else
+    {
+        echo "Nie mogę zablokować pliku $nazwa_pliku";
+    }
+    // fclose() automatycznie zwalnia blokadę
+    fclose($plik);
 
-    // uważamy na zwiększenie licznika przy odświeżeniu strony
-    // zatem po zapisie robimy przekierowanie na tę samą stronę, ale z dodatkową flagą (zmienną o dowolnej wartości))
-    // Jej obecność pozwoli nam sprawdzić czy strona jest faktycznie odwiedzana (flaga nieobecna)
-
+    // jeżeli $_GET['odwiedziny'] zawiera null (jest pusty) oznacza, że to są odwiedziny
+    if (empty($czy_odwiedziny)) header("Location: licznik.php?odwiedziny=1");
 ?>
 
 <!DOCTYPE html>
@@ -32,7 +48,11 @@ Może się przydać: file_exists(), fopen(), fgets(), fputs(), fclose(), flock()
     </style>
 </head>
 <body>
-<br>
-<h1>Liczba odwiedzin na stronie: <b> (Tutaj aktualna wartość licznika) </b></h1>
+<h1>
+    Liczba odwiedzin na stronie:
+    <?php
+        echo "<b>$licznik</b>";
+    ?>
+</h1>
 </body>
 </html>

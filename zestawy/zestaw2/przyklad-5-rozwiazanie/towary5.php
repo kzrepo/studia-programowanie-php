@@ -1,3 +1,21 @@
+<!--
+Utwórz stronę ze skryptem do podstawowej obsługi (dodawanie i wyświetlanie)
+listy towarów.
+a. Strona powinna zawierać formularz do wprowadzenia: nazwy, ceny netto i
+stawki vat. Po wciśnięciu przycisku zatwierdzającego formularz dane
+powinny zostać dopisane do pliku (każdy towar w nowej linii w formacie:
+nazwa|cena|vat).
+b. Poniżej formularza skrypt powinien wypisywać (w tabeli HTML) wszystkie
+wcześniej dodane towary (przechowywane w pliku).
+Pamiętaj o problemie dublowanego zapisu przy odświeżaniu strony, rozwiąż go
+poprzez odpowiednie przekierowanie używając funkcji header().
+Może się przydać: isset(), is_numeric(), fopen(), fclose(), fputs(), flock(), header(), fgetcsv(),
+number_format().
+Dodatek dla dociekliwych:
+Spróbuj zabezpieczyć sytuację jednoczesnego zapisywania do pliku przez kilku
+użytkowników strony. Wcześniej przeczytaj w manualu PHP o funkcji flock().
+-->
+
 <?php
     function netto($cena_brutto, $v): float
     {
@@ -26,7 +44,7 @@
         $plik = fopen($nazwa_pliku, 'a') or exit("Nie można otworzyć pliku $nazwa_pliku");
         fputcsv($plik, [$nazwa_towaru, $cena_brutto, $vat], "|");
         fclose($plik);
-        header("Location: towary5.php");
+        //header("Location: towary5.php");
     }
 ?>
 
