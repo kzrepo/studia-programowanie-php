@@ -1,8 +1,15 @@
+<!--
+Napisz skrypt najlepsi.php: Powinien działać tak jak kandydaci.php zawierając
+dodatkowo pole tekstowe i przycisk „Pokaż”. Po wpisaniu liczby i wciśnięciu
+przycisku wyświetlanych jest tylko tylu najlepszych kandydatów (wg
+sumarycznej liczby punktów) ile wpisano do pola.
+-->
+
 <!DOCTYPE html>
 <html lang="pl">
 <head>
     <meta charset="utf-8">
-    <title>Wyniki egzaminu wstępnego</title>
+    <title>Najlepsi studenci</title>
     <style>
         body {color: #000fff; background-color: yellow;}
         table {margin: 20px auto; border: 2px solid; border-collapse: collapse;}
@@ -10,7 +17,8 @@
         th {background-color: #000fff; color: white; padding: 10px; border: 1px solid;}
         form {border-bottom: 1px solid; padding: 15px; margin-bottom: 20px;
             display: flex; justify-content: center; gap: 15px}
-        p {text-align: center;}
+        p, input {text-align: center;}
+        ::placeholder {font-size: 10px}
     </style>
 </head>
 <body>
@@ -29,12 +37,16 @@
     // 3. ustawienie kodowania znaków w komunikacji z bazą
     mysqli_set_charset($serwer, "utf8");
     // 4. wykonanie zapytania pobierającego symbole wydziałów (potrzebne do listy wyboru)
-    $zapytanie1 = "SELECT DISTINCT wydzial FROM egzamin ORDER BY wydzial ASC;";
+    $zapytanie1 = "SELECT DISTINCT wydzial FROM egzamin ORDER BY wydzial ASC";
     $wydzialy = mysqli_query($serwer, $zapytanie1)
     or exit ("<p>Źle sformułowane żądanie listy wydziałów</p>");
+    $ilosc = $_GET['ilosc'] ?? '';
 ?>
 <form action=''>
-    <label for="wydz">Lista kandydatów na studia na wydziale:</label>
+    <label for="ilosc">Lista</label>
+    <input id="ilosc" name="ilosc" type="number" min="1" size="10" placeholder="Podaj liczbę"
+           value="<?php echo $ilosc; ?>">
+    <label for="wydz">najlepszych kandydatów na studia na wydziale:</label>
     <select name=wydz id="wydz">
         <?php
             // 5. ustawienie zmiennej przechowującej wybrany wydział (z formularza)
@@ -58,36 +70,41 @@
 </form>
 <?php
     // wyświetla listę kandydatów na wybrany wydział (zmienna $wydz) ------------
-
     if ($wydz == '')
     {
         echo "<p>Proszę wybrać wydział</p>";
         return;
     }
 
-    $zapytanie2 = "SELECT * FROM egzamin WHERE wydzial='$wydz' ORDER BY nazwisko";
+    $limit = empty($ilosc) ? 'LIMIT $ilosc' : "";
+    $zapytanie2 = "SELECT *, swiadectwo+mat+fiz+jezyk AS suma FROM egzamin"
+        . " WHERE wydzial='$wydz' ORDER BY suma DESC, nazwisko ASC"
+        . (empty($ilosc) ? "" : " LIMIT $ilosc");
     $wynik = mysqli_query($serwer, $zapytanie2)
     or exit ("<p>Źle sformułowane żądanie danych</p>");
 
     // wygenerowanie tabeli HTML i pierwszego wiersza z nagłówkami
-    $naglowki = ["Nazwisko", "Imię", "Miasto", "Data urodzenia",
+    $naglowki = ["Lp.", "Nazwisko", "Imię", "Miasto", "Data urodzenia",
         "Wydział", "Świadectwo", "Mat.", "Fiz.", "Język", "Suma punktów"];
     echo "<table>";
     echo "<tr>";
     foreach ($naglowki as $naglowek) echo "<th>$naglowek</th>";
     echo "</tr>";
+    $lp = 1;
 
     // wygenerowanie pozostałych wierszy na podstawie wyniku zapytania
     while ($wiersz = mysqli_fetch_array($wynik, MYSQLI_ASSOC))
     {
-        echo "<tr>";
-        foreach ($wiersz as $p => $pole) echo "<td> $pole </td>";
+        echo "<tr><td style='text-align: center'>$lp</td>";
+        foreach ($wiersz as $p => $pole)
+        {
+            if ($p == 'suma') echo "<td style='text-align: right'><b>$pole</b></td>";
+            else echo "<td>$pole</td>";
+        }
 
-// ---------------- dodatkowa komórka z obliczoną sumą punktów ----------------------
-        echo "<td style='text-align: right'><b>" . ($wiersz['swiadectwo'] + $wiersz['mat'] +
-                $wiersz['fiz'] + $wiersz['jezyk']) . "</b></td>";
-// ----------------------------------------------------------------------------------     
+// ----------------------------------------------------------------------------------
         echo "</tr>";
+        $lp++;
     }
     echo "</table>";
 

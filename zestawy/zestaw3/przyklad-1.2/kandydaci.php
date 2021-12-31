@@ -64,8 +64,8 @@
         echo "<p>Proszę wybrać wydział</p>";
         return;
     }
-
-    $zapytanie2 = "SELECT * FROM egzamin WHERE wydzial='$wydz' ORDER BY nazwisko";
+    $column_name = 'imie, nazwisko, miasto, data_ur, wydzial, swiadectwo, mat, fiz, jezyk';
+    $zapytanie2 = "SELECT $column_name FROM egzamin WHERE wydzial='$wydz' ORDER BY nazwisko;";
     $wynik = mysqli_query($serwer, $zapytanie2)
     or exit ("<p>Źle sformułowane żądanie danych</p>");
 
@@ -80,12 +80,12 @@
     // wygenerowanie pozostałych wierszy na podstawie wyniku zapytania
     while ($wiersz = mysqli_fetch_array($wynik, MYSQLI_ASSOC))
     {
-        echo "<tr>";
-        foreach ($wiersz as $p => $pole) echo "<td> $pole </td>";
-
-// ---------------- dodatkowa komórka z obliczoną sumą punktów ----------------------
-        echo "<td style='text-align: right'><b>" . ($wiersz['swiadectwo'] + $wiersz['mat'] +
-                $wiersz['fiz'] + $wiersz['jezyk']) . "</b></td>";
+        echo "<tr><td style='text-align: center'>$lp</td>";
+        foreach ($wiersz as $p => $pole)
+        {
+            if ($p == 'suma') echo "<td style='text-align: right'><b>$pole</b></td>";
+            else echo "<td>$pole</td>";
+        }
 // ----------------------------------------------------------------------------------     
         echo "</tr>";
     }

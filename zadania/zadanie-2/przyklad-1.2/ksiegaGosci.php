@@ -1,6 +1,8 @@
 <!--
 Zrobiłem to na bazie całych słów i porównywania tablic. Dzięki temu, mogę wyszukiwać
-słowa, które nie występują po sobie. Do wyszukiwania frazy wystarczy wpis zamienić
+słowa, które nie występują po sobie.
+
+Do wyszukiwania frazy wystarczy wpis zamienić
 na string i wyszukać drugi string w postaci filtra.
 -->
 
@@ -12,19 +14,20 @@ na string i wyszukać drugi string w postaci filtra.
     $filename = 'ksiega.txt';
     $wpis = str_replace("\r\n", "<br>", $wpis);
 
-    $plik = fopen($filename, "a");
-    if (!$imie == null)
+    if (!empty($imie))
     {
+        $plik = fopen($filename, "a");
         fputs($plik, "$imie\n");
         fputs($plik, "$wpis\n");
+        fclose($plik);
+        header("Location: ksiegaGosci.php");
     }
-    fclose($plik);
 ?>
 <?php
     function drukuj_wpis()
     {
-        global $licznik, $linia_1, $slowa, $linia_2;
-        print("Wpis nr $licznik <br>");
+        global $lp, $linia_1, $slowa, $linia_2;
+        print("Wpis nr $lp <br>");
         print("Imię: <b>$linia_1 </b><br>");
         print("Treść wpisu (ilość słów: " . count($slowa) . "):<br> <b>$linia_2</b><br><hr>");
     }
@@ -44,8 +47,7 @@ na string i wyszukać drugi string w postaci filtra.
     <label for="filtr"><i>Pokaż tylko wpisy zawierające frazę: </i></label>
     <input type="text" size="25" id="filtr" name="filtr">
     <input type="submit" value="Filtruj">
-    <button type="button" onclick="window.location.href='http://studia' +
-     '.localhost:8082/zestawy/zestaw2/przyklad-1.2/ksiegaGosci.html'">Dodaj wpis
+    <button type="button" onclick="window.location.href='ksiegaGosci.html'">Dodaj wpis
     </button>
 </form>
 <hr>

@@ -20,8 +20,8 @@ Wykorzystałem funkcję fgetcsv()
 <?php
     function drukuj_wpis()
     {
-        global $licznik, $slowa, $wpis_wczytany;
-        print("Wpis nr $licznik <br>");
+        global $lp, $slowa, $wpis_wczytany;
+        print("Wpis nr $lp <br>");
         print("Imię: <b>$wpis_wczytany[0] </b><br>");
         print("Treść wpisu (ilość słów: " . count($slowa) . "):<br> <b>$wpis_wczytany[1]</b><br><hr>");
     }
