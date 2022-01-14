@@ -1,5 +1,5 @@
 <?php
-    include('funkcje.php');
+    include('funkcje_db.php');
     function wypisz_studenci()
     {
         // zmienna przechowująca uchwyt do bazy
@@ -65,15 +65,15 @@
         // generuje formularz do edycji imienia i nazwiska studenta
         echo "
         <form method=POST action=''>
-            <table style='border: 0'>
+            <table>
                 <tr>
-                    <td>Imię</td>
+                    <th>Imię</th>
                     <td colspan=2>
                         <input type=text name='imie' value='$imie' size=15 style='text-align: left'>
                     </td>
                 </tr>
                 <tr>
-                    <td>Nazwisko</td>
+                    <th>Nazwisko</th>
                     <td colspan=2>
                         <input type=text name='nazwisko' value='$nazwisko' size=15 style='text-align: left'>
                     </td>
@@ -96,11 +96,12 @@
             $rozkaz = "update studenci set imie='$imie', nazwisko='$nazwisko' where numer=$nr;";
         else $rozkaz = "insert into studenci values(null, '$imie', '$nazwisko');";
         mysqli_query($polaczenie, $rozkaz) or exit("Błąd w zapytaniu: " . $rozkaz);
+        header('Location: studenci.php');
     }
     function usun_studenta($nr)
     {
         global $polaczenie;
-        $rozkaz = "DELETE FROM studenci WHERE numer=" . $nr . ";";
+        $rozkaz = "DELETE FROM studenci WHERE numer='$nr';";
         mysqli_query($polaczenie, $rozkaz) or exit("Błąd w zapytaniu: " . $rozkaz);
     }
 ?>
@@ -148,19 +149,19 @@
         switch ($polecenie)
         {
             case 'Edytuj':
-                edytuj_przedmioty($nr);
+                edytuj_studenta($nr);
                 break;
             case 'Dodaj nowego':
-                edytuj_przedmioty();
+                edytuj_studenta();
                 break;
             case 'Zapisz':
-                zapisz_przedmioty($nr);
+                zapisz_studenta($nr);
                 break;
             case 'Usuń':
-                usun_przedmiot($nr);
+                usun_studenta($nr);
         }
 
-        wypisz_przedmioty();
+        wypisz_studenci();
         zamknij_polaczenie();
     ?>
 </div>

@@ -1,37 +1,25 @@
 <?php
-    include('funkcje.php');
-    function wypisz_studenci()
+    include('funkcje_db.php');
+    function wypisz_przedmioty()
     {
-        // zmienna przechowująca uchwyt do bazy
-        // uzyskany jako wynik mysql_connect()
         global $polaczenie;
 
-        $zapytanie = "SELECT * FROM studenci";
+        $zapytanie = "SELECT * FROM przedmioty";
         $wynik = mysqli_query($polaczenie, $zapytanie);
-        // gdy zapytanie nie wykona się poprawnie funkcja jest przerywana
         if (!$wynik) return;
 
-        // generowanie formularza, nagłówków tabeli i przycisku dodawania nowego rekordu (studenta)
-        $naglowki = ["Imię", "Nazwisko"];
-        print("<h3>Studenci</h3>");
+        $naglowki = ["Nazwa", "Godziny"];
+        print("<h3>Przedmioty</h3>");
         print("<form method='POST'>");
         print("<table><tr>");
         foreach ($naglowki as $naglowek) print("<th>$naglowek</th>");
-        // zapis name='przycisk[]' oznacza że po wysłaniu formularza
-        // w tablicy danych przesyłanych metodą POST
-        // w podtablicy o nazwie 'przycisk', pod pierwszym wolnym indeksem
-        // zapisze się wartość 'Dodaj nowego' jeśli ten właśnie przycisk został wciśnięty
-        print("<th><input type='submit' name='przycisk[-1]' value='Dodaj nowego'></th>");
+        print("<th><input type='submit' name='przycisk[-1]' value='Dodaj nowy'></th>");
         print("</tr>");
-        // generowanie pozostałych wierszy tabeli zawierających dane studentów
-        // oraz przyciski do wykonania operacji na każdym z nich
         while ($wiersz = mysqli_fetch_row($wynik))
         {
             print("<tr>");
             foreach ($wiersz as $p => $pole)
                 if ($p != 0) print("<td>$pole</td>");
-            // wciśnięcie przycisku ustawi odpowiednią nazwę operacji do wykonania
-            // jako wartość elementu 'przycisk[id]', gdzie id jest kluczem głównym z tabeli studentów
             print("<td class='center'>
                 <input type='submit' name='przycisk[$wiersz[0]]' value='Edytuj'>
                 <input type='submit' name='przycisk[$wiersz[0]]' value='Usuń'></td>");
@@ -41,41 +29,36 @@
         print("</form>");
         mysqli_free_result($wynik);
     }
-    function edytuj_studenta($nr = -1)
+    function edytuj_przedmioty($nr = -1)
     {
         global $polaczenie;
-        // poniższy fragment ustawia wartości zmiennych imie i nazwisko
-        // wyciągając z bazy dla studenta o podanym w parametrze numerze
+
         if ($nr != -1)
         { // edycja
-            $rozkaz = "select imie, nazwisko from studenci where numer=$nr;";
+            $rozkaz = "select nazwa, godziny from przedmioty where numer=$nr;";
             $rekord = mysqli_query($polaczenie, $rozkaz) or exit("Błąd w zapytaniu: " . $rozkaz);
 
-            $student = mysqli_fetch_row($rekord);
-            $imie = $student[0];
-            $nazwisko = $student[1];
-
-            //$imie = mysqli_result($rekord, 0, "imie");
-            //$nazwisko = mysqli_result($rekord, 0, "nazwisko");
+            $przedmiot = mysqli_fetch_row($rekord);
+            $nazwa = $przedmiot[0];
+            $godziny = $przedmiot[1];
         } else
         { // dodanie nowego
-            $imie = '';
-            $nazwisko = '';
+            $nazwa = '';
+            $godziny = '';
         }
-        // generuje formularz do edycji imienia i nazwiska studenta
         echo "
         <form method=POST action=''>
-            <table style='border: 0'>
+            <table>
                 <tr>
-                    <td>Imię</td>
+                    <th>Nazwa</th>
                     <td colspan=2>
-                        <input type=text name='imie' value='$imie' size=15 style='text-align: left'>
+                        <input type=text name='nazwa' value='$nazwa' size=15 style='text-align: left'>
                     </td>
                 </tr>
                 <tr>
-                    <td>Nazwisko</td>
+                    <th>Godziny</th>
                     <td colspan=2>
-                        <input type=text name='nazwisko' value='$nazwisko' size=15 style='text-align: left'>
+                        <input type=text name='godziny' value='$godziny' size=15 style='text-align: left'>
                     </td>
                 </tr>
                 <tr>
@@ -87,20 +70,21 @@
         </form>
         ";
     }
-    function zapisz_studenta($nr)
+    function zapisz_przedmioty($nr)
     {
         global $polaczenie;
-        $imie = $_POST['imie'];
-        $nazwisko = $_POST['nazwisko'];
+        $nazwa = $_POST['nazwa'];
+        $godziny = $_POST['godziny'];
         if ($nr != -1)
-            $rozkaz = "update studenci set imie='$imie', nazwisko='$nazwisko' where numer=$nr;";
-        else $rozkaz = "insert into studenci values(null, '$imie', '$nazwisko');";
+            $rozkaz = "update przedmioty set nazwa='$nazwa', godziny='$godziny' where numer=$nr;";
+        else $rozkaz = "insert into przedmioty values(null, '$nazwa', '$godziny');";
         mysqli_query($polaczenie, $rozkaz) or exit("Błąd w zapytaniu: " . $rozkaz);
+        header('Location: przedmioty.php');
     }
-    function usun_studenta($nr)
+    function usun_przedmiot($nr)
     {
         global $polaczenie;
-        $rozkaz = "DELETE FROM studenci WHERE numer=" . $nr . ";";
+        $rozkaz = "DELETE FROM przedmioty WHERE numer='$nr';";
         mysqli_query($polaczenie, $rozkaz) or exit("Błąd w zapytaniu: " . $rozkaz);
     }
 ?>
@@ -137,7 +121,7 @@
         echo "</p>";
 
         $polecenie = '';
-        if (isset($_POST['przycisk']))
+        if (!empty($_POST['przycisk']))
         {
             $nr = key($_POST['przycisk']);
             $polecenie = $_POST['przycisk'][$nr];
@@ -150,7 +134,7 @@
             case 'Edytuj':
                 edytuj_przedmioty($nr);
                 break;
-            case 'Dodaj nowego':
+            case 'Dodaj nowy':
                 edytuj_przedmioty();
                 break;
             case 'Zapisz':

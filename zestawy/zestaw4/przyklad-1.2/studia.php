@@ -18,7 +18,7 @@
 </form>
 <br>
 <!-- 3. odsyłacz (link) do strony odpowiedzialnej za zarządzanie przedmiotami -->
-<a href='../przyklad-1.2/przedmioty.php'> PRZEDMIOTY </a>
+<a href='przedmioty.php'> PRZEDMIOTY </a>
 <hr>
 </body>
 </html>

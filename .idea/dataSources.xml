@@ -1,11 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="studia@localhost" uuid="7365d6da-8380-4ad8-a38f-482d36170c94">
+    <data-source source="LOCAL" name="zestaw3_przyklad2@localhost" uuid="c0dd4763-0087-4aef-ac6a-3d4d5a4ca7e5">
       <driver-ref>mariadb</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mariadb://localhost:3306/studia</jdbc-url>
+      <jdbc-url>jdbc:mariadb://localhost:3306/zestaw3_przyklad2</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
+    <data-source source="LOCAL" name="zestaw4_zadanie1@localhost" uuid="12b4e792-21c6-4a2b-91ee-ebd0d9a935bb">
+      <driver-ref>mariadb</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.mariadb.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mariadb://localhost:3306/zestaw4_zadanie1</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

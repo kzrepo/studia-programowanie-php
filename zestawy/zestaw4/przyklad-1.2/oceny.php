@@ -1,12 +1,12 @@
 <?php
-    include('funkcje.php');
+    include('funkcje_db.php');
 
     function wypisz_oceny()
     {
         global $polaczenie;
 
         $zapytanie = "SELECT studenci.numer, przedmioty.numer, imie, nazwisko, nazwa, ocena FROM studenci,przedmioty,oceny
-                      WHERE studenci.numer=oceny.nr_stud AND przedmioty.numer=oceny.nr_przed;";
+            WHERE studenci.numer=oceny.nr_stud AND przedmioty.numer=oceny.nr_przed;";
         $wynik = mysqli_query($polaczenie, $zapytanie);
 
         if (!$wynik) return;
@@ -31,7 +31,7 @@
         }
         print("</table>");
         print("</form>");
-        mysqli_free_result($wyuserererernik);
+        mysqli_free_result($wynik);
     }
     function usun_ocene($nr_stud, $nr_przed)
     {
@@ -39,6 +39,37 @@
 
         $rozkaz = "delete from oceny where nr_stud=$nr_stud and nr_przed=$nr_przed;";
         mysqli_query($polaczenie, $rozkaz) or exit("Błąd w zapytaniu: " . $rozkaz);
+    }
+    function edytuj_ocene($nr_stud, $nr_przed)
+    {
+        global $polaczenie;
+        $rozkaz = "SELECT studenci.numer,przedmioty.numer, imie, nazwisko, nazwa, ocena
+            FROM studenci, przedmioty, oceny
+            WHERE studenci.numer=oceny.nr_stud
+                AND przedmioty.numer=oceny.nr_przed
+                AND studenci.numer=$nr_stud
+                AND przedmioty.numer=$nr_przed;";
+        $wynik = mysqli_query($polaczenie, $rozkaz) or exit("Błąd w zapytaniu: " . $rozkaz);
+
+        $wiersz = mysqli_fetch_row($wynik);
+        print "<form method='post' action=''><table>";
+        print "<tr><th>Student:</th><td>$wiersz[2] $wiersz[3]</td></tr>";
+        print "<tr><th>Przedmiot:</th><td>$wiersz[4]</td></tr>";
+        print "<tr><th><label for='ocena'>Ocena:</label></th><td>
+                    <input type='number' id='ocena' name='ocena' value='$wiersz[5]' size='4' min=1 max=5.5 step=0.5
+                        autocomplete='no' style='text-align: center'>
+                </td></tr>";
+        print "<tr><td colspan='2'>
+                   <input type='submit' name='przycisk[$wiersz[0]][$wiersz[1]]' value='Zapisz' style='width: 100%;'/>
+               </td></tr>";
+        print "</table></form>";
+        mysqli_free_result($wynik);
+    }
+    function zapisz_ocene($nr_stud, $nr_przed, $ocena)
+    {
+        global $polaczenie;
+        $rozkaz = "UPDATE oceny SET ocena=$ocena WHERE nr_stud=$nr_stud AND nr_przed=$nr_przed;";
+        mysqli_query($polaczenie, $rozkaz);
     }
 ?>
 
@@ -79,14 +110,21 @@
             $nrStudenta = key($_POST['przycisk']);            // nr studenta
             $nrPrzedmiotu = key($_POST['przycisk'][$nrStudenta]);    // nr przedmiotu
             $polecenie = $_POST['przycisk'][$nrStudenta][$nrPrzedmiotu]; // jaka operacja
+            $ocena = $_POST['ocena'] ?? null;
         }
 
         otworz_polaczenie();
 
         switch ($polecenie)
         {
+            case 'Edytuj':
+                edytuj_ocene($nrStudenta, $nrPrzedmiotu);
+                break;
             case 'Usuń':
                 usun_ocene($nrStudenta, $nrPrzedmiotu);
+                break;
+            case 'Zapisz':
+                zapisz_ocene($nrStudenta, $nrPrzedmiotu, $ocena);
         }
 
         wypisz_oceny();

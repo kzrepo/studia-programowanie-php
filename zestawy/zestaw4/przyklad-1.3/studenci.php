@@ -1,5 +1,5 @@
 <?php
-    include('funkcje.php');
+    include('funkcje_db.php');
     function wypisz_studenci()
     {
         // zmienna przechowująca uchwyt do bazy
@@ -100,7 +100,7 @@
     function usun_studenta($nr)
     {
         global $polaczenie;
-        $rozkaz = "DELETE FROM studenci WHERE numer=" . $nr . ";";
+        $rozkaz = "DELETE FROM studenci WHERE numer='$nr';";
         mysqli_query($polaczenie, $rozkaz) or exit("Błąd w zapytaniu: " . $rozkaz);
     }
 ?>
@@ -128,7 +128,7 @@
     <input type=submit value=" OCENY ">
 </form>
 <br>
-<a href='przedmioty.php'> PRZEDMIOTY </a>
+<a href='../przyklad-1.2/przedmioty.php'> PRZEDMIOTY </a>
 
 <div class="container">
     <?php
@@ -148,19 +148,19 @@
         switch ($polecenie)
         {
             case 'Edytuj':
-                edytuj_studenta($nr);
+                edytuj_przedmioty($nr);
                 break;
             case 'Dodaj nowego':
-                edytuj_studenta();
+                edytuj_przedmioty();
                 break;
             case 'Zapisz':
-                zapisz_studenta($nr);
+                zapisz_przedmioty($nr);
                 break;
             case 'Usuń':
-                usun_studenta($nr);
+                usun_przedmiot($nr);
         }
 
-        wypisz_studenci();
+        wypisz_przedmioty();
         zamknij_polaczenie();
     ?>
 </div>

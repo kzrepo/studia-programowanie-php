@@ -142,17 +142,17 @@
         switch ($polecenie)
         {
             case 'Edytuj':
-                edytuj_studenta($nr);
+                edytuj_przedmioty($nr);
                 break;
             case 'Dodaj nowego':
-                edytuj_studenta();
+                edytuj_przedmioty();
                 break;
             case 'Zapisz':
-                zapisz_studenta($nr);
+                zapisz_przedmioty($nr);
                 break;
         }
 
-        wypisz_studenci();
+        wypisz_przedmioty();
         zamknij_polaczenie();
     ?>
 </div>

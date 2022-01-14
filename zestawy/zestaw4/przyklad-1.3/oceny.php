@@ -1,5 +1,5 @@
 <?php
-    include('funkcje.php');
+    include('funkcje_db.php');
 
     function wypisz_oceny()
     {
@@ -96,7 +96,7 @@
     <input type=submit value=" OCENY ">
 </form>
 <br>
-<a href='przedmioty.php'> PRZEDMIOTY </a>
+<a href='../przyklad-1.2/przedmioty.php'> PRZEDMIOTY </a>
 
 <div class="container">
     <?php

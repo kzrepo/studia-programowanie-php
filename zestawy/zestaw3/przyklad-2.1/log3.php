@@ -1,9 +1,15 @@
 <!--
-Poniżej kod strony (ze skryptem) logującej do systemu na podstawie danych o
-dostępie zapisanych w pliku dostep.txt (jest to rozwiązanie przykładu z
-poprzedniego zestawu uzupełnione o pole ‘login’).
+Utwórz bazę danych o dowolnej nazwie zawierającą tabelę ‘uzytkownicy’ o
+strukturze odpowiadającej danym o użytkowniku (login, imię, nazwisko, płeć,
+hasło) oraz wypełnij tabelę danymi testowymi.
+Możesz też utworzyć plik wsadowy z poleceniami SQL i zaimportować go w środowisku
+MySQL lub napisać odpowiedni skrypt PHP (np. instalacja.php) tworzący strukturę bazy
+danych i uruchomić przed udostępnieniem właściwego serwisu (np. strony startowej)
 -->
 
+<?php
+    include('funkcje_db.php');
+?>
 <!DOCTYPE html>
 <html lang="pl">
 <head>
@@ -19,28 +25,10 @@ poprzedniego zestawu uzupełnione o pole ‘login’).
 <body>
 <div class="container">
     <?php
-        if (isset($_POST['login']))
+        if (!empty($_POST['login']))
         {
-            $plik = @fopen("dostep.txt", "r")
-            or exit("Błąd w pliku z danymi użytkowników");
-
-            $znaleziony = false;
-            while (!feof($plik))
-            {
-                $userData = fgetcsv($plik, 0, ';');
-                if ($userData[0] == $_POST['login'])
-                {
-                    $znaleziony = true;
-                    break;
-                }
-            }
-            fclose($plik);
-
-            if ($znaleziony)
-                if ($_POST['haslo'] == $userData[3])
-                    echo "$userData[1] $userData[2], witamy " . ($userData[4] == "k" ? "Panią" : "Pana") . " w systemie ";
-                else echo "Logowanie nieudane";
-            else echo "Brak podanego użytkownika";
+            otworz_polaczenie();
+            zamknij_polaczenie();
         } else
         { ?>
             <form method=POST action=''>
