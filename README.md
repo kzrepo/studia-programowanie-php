@@ -66,8 +66,22 @@
    1.2 Dodawanie przedmiotów oraz edycja i usuwanie  
    1.3 Dodawanie oceny dla studenta i przedmiotu
 2. Kreator zgłoszenia kandydata - trzykrokowy  
-   2.1 Modyfikacja stron b i c by wyświetlały się dane studenta ze strony a  
+   2.1 Modyfikacja stron b i c by wyświetlały się dane studenta ze strony a
+   > Tworzenie i używanie sesji
+
    2.2 Strona z podsumowaniem danych o kandydacie  
    2.3 Możliwość przechodzenia wstecz  
    2.4 Aktualizacja danych po kliknięciu przycisku wstecz  
-   2.5 Walidacja stron a, b i c za pomocą JavaScript 2.6 Zmiana tła wypełnionego pola za pomocą JavaScript
+   2.5 Walidacja stron a, b i c za pomocą JavaScript  
+   2.6 Zmiana tła wypełnionego pola za pomocą JavaScript
+
+### Zestaw 5
+
+1. Licznik odwiedzin - rozszerzenia
+2. Przeglądarka plików - uzupełnienia  
+   2.1 Zapisywanie informacji o bieżącym katalogu w cookie.  
+   2.2 Natychmiastowe działanie wyboru w select za pomocą JS
+3. Gadżety JavaScript  
+   3.1 Funkcja dla przycisku, która wyświetla nowe okienko  
+   3.2 Funkcja zmieniająca kolor tła za pomocą przycisku  
+   3.3 Funkcja obsługująca stoper  
